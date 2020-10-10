@@ -1,7 +1,15 @@
 package org.academiadecodigo.bitjs.amazeing;
 
+import org.academiadecodigo.bitjs.amazeing.grid.FieldElements;
+import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGrid;
+
 public class Main {
     public static void main(String[] args) {
-        Game game = new Game();
+        SimpleGfxGrid maze = new SimpleGfxGrid(31,18);
+        FieldElements fieldElements = new FieldElements(maze);
+
+        Game game = new Game(maze, fieldElements);
+
+        game.start();
     }
 }
