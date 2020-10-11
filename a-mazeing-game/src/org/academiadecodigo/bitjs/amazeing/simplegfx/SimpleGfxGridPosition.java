@@ -13,17 +13,31 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
     private int cols;
     private int rows;
     private GridColor Color;
+    private int x;
+    private int y;
 
     public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid grid, GridColor colour){
         super(col, row, grid);
 
         simpleGfxGrid = grid;
 
-        int x = grid.columnToX(col);
-        int y = grid.rowToyY(row);
+        this.x = grid.columnToX(col);
+        this.y = grid.rowToyY(row);
 
         this.rectangle = new Rectangle(x,y, grid.getCellSize(), grid.getCellSize());
         setColor(colour);
+        show();
+    }
+
+    public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid grid){
+        super(col, row, grid);
+
+        simpleGfxGrid = grid;
+
+        this.x = grid.columnToX(col);
+        this.y = grid.rowToyY(row);
+
+        this.rectangle = new Rectangle(x,y, grid.getCellSize(), grid.getCellSize());
         show();
     }
 
@@ -54,5 +68,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         super.setColor(color);
     }
 
+    public int getX() {
+        return x;
+    }
 
+    public int getY() {
+        return y;
+    }
 }
