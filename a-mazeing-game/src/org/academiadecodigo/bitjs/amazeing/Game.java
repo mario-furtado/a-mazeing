@@ -5,21 +5,21 @@ import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGrid;
 
 public class Game {
 
-    private SimpleGfxGrid maze ;
+    private SimpleGfxGrid simpleGfxGrid;
     //public SimpleGfxGridPosition position = new SimpleGfxGridPosition(0,0, maze, GridColor.GREEN);
 
     private FieldElements fieldElements;
 
 
-    public Game(SimpleGfxGrid maze, FieldElements fieldElements){
-        this.maze = maze;       /*= new SimpleGfxGrid(60,28)*/;
+    public Game(SimpleGfxGrid simpleGfxGrid, FieldElements fieldElements){
+        this.simpleGfxGrid = simpleGfxGrid;       /*= new SimpleGfxGrid(60,28)*/;
         this.fieldElements = fieldElements;      /*= new BoarderLine(maze)*/;
 
     }
 
 
     public void start(){
-        maze.init();
+        simpleGfxGrid.init();
         fieldElements.bushesFactory();
         fieldElements.middleLineFactory();
     }

@@ -1,6 +1,7 @@
 package org.academiadecodigo.bitjs.amazeing;
 
 import org.academiadecodigo.bitjs.amazeing.grid.FieldElements;
+import org.academiadecodigo.bitjs.amazeing.grid.Maze;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGrid;
 
 public class Main {
@@ -11,5 +12,13 @@ public class Main {
         Game game = new Game(maze, fieldElements);
 
         game.start();
+
+        Maze mazeee = new Maze();
+
+        mazeee.paintMaze(maze);
+
+
+
+
     }
 }
