@@ -5,14 +5,14 @@ import org.academiadecodigo.bitjs.amazeing.grid.GridDirection;
 
 public abstract class AbstractGridPosition implements GridPosition {
 
-    private int col;
-    private int row;
+    //private int col;
+    //private int row;
     private GridColor color;
     private Grid grid;
 
-    public AbstractGridPosition(int col, int row, Grid grid){
-        this.col = col;
-        this.row = row;
+    public AbstractGridPosition(/*int col, int row,*/ Grid grid){
+        //this.col = col;
+       // this.row = row;
         this.grid = grid;
         this.color = GridColor.NOCOLOR;
     }
@@ -21,7 +21,7 @@ public abstract class AbstractGridPosition implements GridPosition {
         return this.grid;
     }
 
-    @Override
+   /* @Override
     public int getCol(){
         return col;
     }
@@ -29,7 +29,7 @@ public abstract class AbstractGridPosition implements GridPosition {
     @Override
     public int getRow(){
         return row;
-    }
+    }*/
 
     //public GridColor getColor();
 

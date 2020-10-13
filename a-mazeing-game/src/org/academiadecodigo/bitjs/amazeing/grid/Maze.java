@@ -5,7 +5,6 @@ import org.academiadecodigo.bitjs.amazeing.setup.tiles.FixedBush;
 import org.academiadecodigo.bitjs.amazeing.setup.tiles.Path;
 import org.academiadecodigo.bitjs.amazeing.setup.tiles.Trophy;
 import org.academiadecodigo.bitjs.amazeing.setup.tiles.WalkableBush;
-import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxColorMapper;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGridPosition;
 
@@ -17,6 +16,8 @@ public class Maze {
     1 = rock path
     2 = green wall (inside the maze)
     3 = green path (walkable bushes)
+    4 = player1 initial position
+    5 = player2 initial position
     9 = trophy
      */
 
@@ -26,9 +27,10 @@ public class Maze {
     private Path path;
     private Trophy trophy;
 
-    private int[][] maze =
+    private int[][] scheme =
             {
-                    // 0| 1| 2 |3| 4| 5| 6| 7 |8 |9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40
+                    //0| 1| 2 |3| 4| 5| 6| 7 |8 |9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40
+
                     {0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                     {0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                     {0, 0, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 0, 3, 0, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0},
@@ -39,7 +41,7 @@ public class Maze {
                     {0, 0, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 0, 3, 0, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 0, 0},
                     {0, 0, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 0, 3, 0, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 0, 0},
                     {0, 0, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 3, 0, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 1, 0, 0},
-                    {1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 9, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                    {4, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 9, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 5},
                     {0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2, 1, 0, 3, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 0, 0},
                     {0, 0, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 0, 3, 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 0, 0},
                     {0, 0, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 0, 3, 0, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 0, 0},
@@ -54,14 +56,14 @@ public class Maze {
 
 
     public void paintMaze(SimpleGfxGrid grid) {
-        for (int row = 0; row < maze.length; row++) {        // maze.length retorna o numero de rows (8)
-            for (int col = 0; col < maze[0].length; col++) {  // maze[0].length retorna o numero de cols (11)
+        for (int row = 0; row < scheme.length; row++) {        // maze.length retorna o numero de rows (8)
+            for (int col = 0; col < scheme[0].length; col++) {  // maze[0].length retorna o numero de cols (11)
 
-                GridColor color = GridColor.NOCOLOR;
+                /*GridColor color = GridColor.NOCOLOR;*/
 
-                SimpleGfxGridPosition position = new SimpleGfxGridPosition(col, row, grid, color);
+                SimpleGfxGridPosition position = new SimpleGfxGridPosition(col, row, grid/*, color*/);
 
-                switch (maze[row][col]) {
+                switch (scheme[row][col]) {
                     case 1:
                         path = new Path(row,col,grid);
                         path.init();
@@ -90,6 +92,14 @@ public class Maze {
                         position.setColor(color);
                         position.show();*/
                         break;
+                    case 4:
+                        path = new Path(row,col,grid);
+                        path.init();
+                        break;
+                    case 5:
+                        path = new Path(row,col,grid);
+                        path.init();
+                        break;
                     case 9:
                         trophy = new Trophy(row,col,grid);
                         trophy.init();
@@ -100,6 +110,10 @@ public class Maze {
                 }
             }
         }
+    }
+
+    public int[][] getScheme() {
+        return scheme;
     }
 }
 

@@ -5,9 +5,9 @@ import org.academiadecodigo.bitjs.amazeing.grid.GridDirection;
 
 public interface GridPosition {
 
-    public int getCol();
+  /*  public int getCol();
 
-    public int getRow();
+    public int getRow();*/
 
     public void setPos(int col, int row);
 
