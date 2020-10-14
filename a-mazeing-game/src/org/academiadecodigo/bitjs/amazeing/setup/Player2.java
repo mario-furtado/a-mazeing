@@ -9,13 +9,14 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Player2 extends Player {
 
     private Picture sprite;
-    private SimpleGfxGridPosition simpleGfxGridPosition = initialPosition();
-
+    private SimpleGfxGridPosition initialPosition;
+    private SimpleGfxGridPosition currentPosition;
 
     public Player2(Maze maze, SimpleGfxGrid grid) {
         super(maze,grid);
-        //this.simpleGfxGridPosition = simpleGfxGridPosition;
-        sprite = new Picture(simpleGfxGridPosition.getX(), simpleGfxGridPosition.getY(),"resources/bushbush.png");
+        initialPosition = initialPosition();
+        this.currentPosition = initialPosition;
+        sprite = new Picture(currentPosition.getX(), currentPosition.getY(),"resources/right.png");
 
     }
 
@@ -26,8 +27,8 @@ public class Player2 extends Player {
             for (int col = 0; col < maze.getScheme()[0].length; col++) {  // maze[0].length retorna o numero de cols
 
                 if (maze.getScheme()[row][col] == 5) {
-                    this.simpleGfxGridPosition = new SimpleGfxGridPosition(col, row, super.getGrid());
-                    return simpleGfxGridPosition;
+                    this.currentPosition = new SimpleGfxGridPosition(col, row, super.getGrid());
+                    return currentPosition;
                 }
             }
         }
@@ -41,25 +42,25 @@ public class Player2 extends Player {
     @Override
     public void moveRight() {
         sprite.translate(40,0);
-        simpleGfxGridPosition.setCol(simpleGfxGridPosition.getCol() +40);
+        currentPosition.setCol(currentPosition.getCol() +40);
     }
 
     @Override
     public void moveLeft() {
         sprite.translate(-40,0);
-        simpleGfxGridPosition.setCol(simpleGfxGridPosition.getCol() -40);
+        currentPosition.setCol(currentPosition.getCol() -40);
     }
 
     @Override
     public void moveUp() {
         sprite.translate(0,-40);
-        simpleGfxGridPosition.setRow(simpleGfxGridPosition.getRow() - 40);
+        currentPosition.setRow(currentPosition.getRow() - 40);
     }
 
     @Override
     public void moveDown() {
         sprite.translate(0,40);
-        simpleGfxGridPosition.setRow(simpleGfxGridPosition.getRow() + 40);
+        currentPosition.setRow(currentPosition.getRow() + 40);
     }
 
     public Picture getSprite() {

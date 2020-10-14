@@ -1,6 +1,7 @@
 package org.academiadecodigo.bitjs.amazeing.grid;
 
 import org.academiadecodigo.bitjs.amazeing.grid.position.GridColor;
+import org.academiadecodigo.bitjs.amazeing.setup.Player1;
 import org.academiadecodigo.bitjs.amazeing.setup.tiles.FixedBush;
 import org.academiadecodigo.bitjs.amazeing.setup.tiles.Path;
 import org.academiadecodigo.bitjs.amazeing.setup.tiles.Trophy;

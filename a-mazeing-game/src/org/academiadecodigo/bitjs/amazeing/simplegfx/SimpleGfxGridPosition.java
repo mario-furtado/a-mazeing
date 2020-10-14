@@ -12,7 +12,7 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
     private int col;
     private int row;
-    private GridColor Color;
+    //private GridColor Color;
     private int x;
     private int y;
 
@@ -28,26 +28,28 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         this.y = grid.rowToyY(row);
 
         this.rectangle = new Rectangle(x,y, grid.getCellSize(), grid.getCellSize());
-        setColor(colour);
-        show();
+        //setColor(colour);
+        //show();  // // TIREI OS RETANGULOS PRETOS!!!
     }
 
     public SimpleGfxGridPosition(int col, int row, SimpleGfxGrid grid){
         super(/*col, row, */grid);
 
-        simpleGfxGrid = grid;
+        this.simpleGfxGrid = grid;
 
         this.x = grid.columnToX(col);
         this.y = grid.rowToyY(row);
+        this.col = col;   // ADICIONEI COLS E ROWS AQUI
+        this.row = row;
 
         this.rectangle = new Rectangle(x,y, grid.getCellSize(), grid.getCellSize());
-        show();
+        //show();     // TIREI OS RETANGULOS PRETOS!!!
     }
 
    @Override
    public void show(){
         //setColor(Color);
-        this.rectangle.fill();
+        this.rectangle.draw();   //ALTEREI PARA DRAW!!!
    }
 
     @Override
@@ -65,11 +67,11 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         throw new UnsupportedOperationException();
     }
 
-    @Override
+    /*@Override
     public void setColor(GridColor color){
         this.rectangle.setColor(SimpleGfxColorMapper.getColor(color));
         super.setColor(color);
-    }
+    }*/
 
     public int getCol(){
         return col;

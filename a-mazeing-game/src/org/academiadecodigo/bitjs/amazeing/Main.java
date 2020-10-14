@@ -1,6 +1,6 @@
 package org.academiadecodigo.bitjs.amazeing;
 
-import org.academiadecodigo.bitjs.amazeing.grid.FieldElements;
+//import org.academiadecodigo.bitjs.amazeing.grid.FieldElements;
 import org.academiadecodigo.bitjs.amazeing.grid.Maze;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGrid;
 

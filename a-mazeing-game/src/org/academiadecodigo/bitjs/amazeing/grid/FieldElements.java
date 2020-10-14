@@ -4,7 +4,7 @@ import org.academiadecodigo.bitjs.amazeing.grid.position.GridColor;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGridPosition;
 
-public class FieldElements {
+/*public class FieldElements {
 
     private SimpleGfxGrid grid;
     private SimpleGfxGridPosition[] horizontalBushes;
@@ -36,5 +36,5 @@ public class FieldElements {
            horizontalBushes[i] = new SimpleGfxGridPosition((int)Math.ceil(this.grid.getCols()/2), i, this.grid, GridColor.BLACK);
        }
     }
-}
+}*/
 

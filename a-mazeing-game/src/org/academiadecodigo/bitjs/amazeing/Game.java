@@ -1,6 +1,5 @@
 package org.academiadecodigo.bitjs.amazeing;
 
-import org.academiadecodigo.bitjs.amazeing.grid.FieldElements;
 import org.academiadecodigo.bitjs.amazeing.grid.Maze;
 import org.academiadecodigo.bitjs.amazeing.setup.Player1;
 import org.academiadecodigo.bitjs.amazeing.setup.Player2;
@@ -12,11 +11,10 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
 public class Game implements KeyboardHandler {
 
+    /*public SimpleGfxGridPosition position = new SimpleGfxGridPosition(0,0, maze, GridColor.GREEN);
+
+    private FieldElements fieldElements;*/
     private SimpleGfxGrid simpleGfxGrid;
-    //public SimpleGfxGridPosition position = new SimpleGfxGridPosition(0,0, maze, GridColor.GREEN);
-
-    /*private FieldElements fieldElements;*/
-
     private Player1 player1;
     private Player2 player2;
     private Maze maze;
@@ -33,21 +31,21 @@ public class Game implements KeyboardHandler {
 
 
     public Game(SimpleGfxGrid simpleGfxGrid, /*FieldElements fieldElements,*/ Maze maze){
+        /* this.fieldElements = fieldElements; */     /*= new BoarderLine(maze)*/;
         this.simpleGfxGrid = simpleGfxGrid;       /*= new SimpleGfxGrid(60,28)*/;
-       /* this.fieldElements = fieldElements; */     /*= new BoarderLine(maze)*/;
         this.maze = maze;
         this.player1 = new Player1(maze,simpleGfxGrid);
         this.player2 = new Player2(maze,simpleGfxGrid);
     }
 
     public void start(){
-        simpleGfxGrid.init();
-        maze.paintMaze(simpleGfxGrid);
-        /*fieldElements.bushesFactory();
-        fieldElements.middleLineFactory();*/
-        player1.init();
-        player2.init();
+        simpleGfxGrid.init();  //Desenha a grid base (retangulo grande)
+        maze.paintMaze(simpleGfxGrid);  //Desenha os sprites dos bush, etc no jogo
+        player1.init();  //Desenha sprite do player1
+        player2.init();  //Desenha sprite do player2
         init();
+         /*fieldElements.bushesFactory();
+        fieldElements.middleLineFactory();*/
     }
 
     //--------------PLAYERS MOVEMENT--------------
@@ -61,7 +59,7 @@ public class Game implements KeyboardHandler {
 
         Keyboard keyboard1 = new Keyboard(this);
 
-        //mover player para a direita (-> e D)
+        //move player para a direita (-> e D)
         right2 = new KeyboardEvent();
         right2.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         right2.setKey(KeyboardEvent.KEY_RIGHT);
