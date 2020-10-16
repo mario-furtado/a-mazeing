@@ -46,6 +46,7 @@ public class Game implements KeyboardHandler {
         /*fieldElements.bushesFactory();
         fieldElements.middleLineFactory();*/
         player1.init();
+        System.out.println("ESTAAAA " + (player1.getSimpleGfxGridPosition().getCol() + " " + (player1.getSimpleGfxGridPosition().getRow())));
         player2.init();
         init();
     }
@@ -126,39 +127,55 @@ public class Game implements KeyboardHandler {
            /* if( player1.getPosition().getCol() == field.getWidth() ){
 
             }*/
+            player1.getSprite().delete();
             player1.moveRight();
+            player1.getSprite().draw();
         }
 
         if (keyboardEvent.getKey() == left.getKey()){
             //if( player1.getPosition().getCol() == field.g)
+            player1.getSprite().delete();
             player1.moveLeft();
+            player1.getSprite().draw();
         }
 
         if(keyboardEvent.getKey() == up.getKey()){
+            player1.getSprite().delete();
             player1.moveUp();
+            player1.getSprite().draw();
         }
 
         if(keyboardEvent.getKey() == down.getKey()){
+            player1.getSprite().delete();
             player1.moveDown();
+            player1.getSprite().draw();
         }
 // --------- Player2 ------------------------//
         if (keyboardEvent.getKey() == right2.getKey()){
            /* if( player2.getPosition().getCol() == field.getWidth() ) {
 
             }*/
+            player1.getSprite().delete();
             player2.moveRight();
+            player1.getSprite().draw();
         }
 
         if (keyboardEvent.getKey() == left2.getKey()){
+            player1.getSprite().delete();
             player2.moveLeft();
+            player1.getSprite().draw();
         }
 
         if(keyboardEvent.getKey() == up2.getKey()){
+            player1.getSprite().delete();
             player2.moveUp();
+            player1.getSprite().draw();
         }
 
         if(keyboardEvent.getKey() == down2.getKey()){
+            player1.getSprite().delete();
             player2.moveDown();
+            player1.getSprite().draw();
         }
     }
 

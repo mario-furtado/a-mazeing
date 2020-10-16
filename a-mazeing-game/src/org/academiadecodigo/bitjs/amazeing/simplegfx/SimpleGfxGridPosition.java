@@ -39,15 +39,16 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
 
         this.x = grid.columnToX(col);
         this.y = grid.rowToyY(row);
-
+        this.col = col;
+        this.row = row;
         this.rectangle = new Rectangle(x,y, grid.getCellSize(), grid.getCellSize());
-        show();
+        //show();
     }
 
    @Override
    public void show(){
         //setColor(Color);
-        this.rectangle.fill();
+        this.rectangle.draw();
    }
 
     @Override
