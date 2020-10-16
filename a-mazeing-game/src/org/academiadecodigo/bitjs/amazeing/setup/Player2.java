@@ -26,20 +26,6 @@ public class Player2 extends Player {
         this.collisionDetector = new CollisionDetector(getMaze());
     }
 
-    /*private SimpleGfxGridPosition initialPosition(){
-        Maze maze = super.getMaze();
-
-        for (int row = 0; row < maze.getScheme().length; row++) {        // maze.length retorna o numero de rows
-            for (int col = 0; col < maze.getScheme()[0].length; col++) {  // maze[0].length retorna o numero de cols
-
-                if (maze.getScheme()[row][col] == 5) {
-                    this.simpleGfxGridPosition = new SimpleGfxGridPosition(col, row, super.getGrid());
-                    return simpleGfxGridPosition;
-                }
-            }
-        }
-        return null;
-    }*/
 
     public void init() {
         sprite.draw();

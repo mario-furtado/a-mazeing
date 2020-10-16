@@ -63,9 +63,4 @@ public class CollisionDetector {
         System.out.println(true);
         return true;
     }
-
-
-
-
-
 }

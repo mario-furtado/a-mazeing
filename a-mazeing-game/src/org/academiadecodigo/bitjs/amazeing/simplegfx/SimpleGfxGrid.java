@@ -59,7 +59,7 @@ public class SimpleGfxGrid implements Grid {
         return new SimpleGfxGridPosition(col, row, this, gridColor);
     }
 
-    public int rowToyY(int row){
+    public int rowToY(int row){
         return PADDING + row*CELL_SIZE;
     }
 

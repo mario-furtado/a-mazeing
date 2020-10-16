@@ -14,35 +14,20 @@ public class Player1 extends Player {
     private SimpleGfxGridPosition simpleGfxGridPosition;
     private CollisionDetector collisionDetector;
     private static final int CELL_SIZE = 40;
-    private static final int INITIAL_COL = 0;
-    private static final int INITIAL_ROW = 10;
-
+    private static final int INITIAL_COL = 0;  //0
+    private static final int INITIAL_ROW = 10;  //10
+    private String lastPosition = "front";
 
 
     public Player1(Maze maze, SimpleGfxGrid grid) {
-        super(maze,grid);
-        this.initialPosition = new SimpleGfxGridPosition(INITIAL_COL,INITIAL_ROW, grid);
-        this.simpleGfxGridPosition = new SimpleGfxGridPosition(INITIAL_COL,INITIAL_ROW, grid);
-        sprite = new Picture(simpleGfxGridPosition.getX(), simpleGfxGridPosition.getY(),"resources/sprite-front.png");
+        super(maze, grid);
+        this.initialPosition = new SimpleGfxGridPosition(INITIAL_COL, INITIAL_ROW, grid);
+        this.simpleGfxGridPosition = new SimpleGfxGridPosition(INITIAL_COL, INITIAL_ROW, grid);
+        sprite = new Picture(simpleGfxGridPosition.getX(), simpleGfxGridPosition.getY(), "resources/sprite-front.png");
         this.collisionDetector = new CollisionDetector(getMaze());
     }
 
-    /*private SimpleGfxGridPosition initialPosition(){
-    Maze maze = super.getMaze();
-
-        for (int row = 0; row < maze.getScheme().length; row++) {        // maze.length retorna o numero de rows
-            for (int col = 0; col < maze.getScheme()[0].length; col++) {  // maze[0].length retorna o numero de cols
-
-                if (maze.getScheme()[row][col] == 4) {
-                    this.initialPosition = new SimpleGfxGridPosition(col, row, super.getGrid());
-                    return initialPosition;
-                }
-            }
-        }
-        return null;
-    }*/
-
-    public void init(){
+    public void init() {
         sprite.draw();
     }
 
@@ -50,40 +35,49 @@ public class Player1 extends Player {
     public void moveRight() {
 
         simpleGfxGridPosition.setCol(simpleGfxGridPosition.getCol() + 1);
-        if(collisionDetector.canWalkPlayer1(this)){
+        if (collisionDetector.canWalkPlayer1(this)) {
             System.out.println("Consigo andar!");
-            sprite.translate(CELL_SIZE,0);  // x e y
-            //currentPosition.setCol(currentPosition.getCol() +40);
+
+            if (!(lastPosition.equals("right"))) {
+                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/sprite-right.png");
+                lastPosition = "right";
+
+            } else {
+                sprite.translate(CELL_SIZE, 0);  // x e y
+                System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+
+            }
         } else {
-            //currentPosition.setCol(currentPosition.getCol() -40);
-            //this.simpleGfxGridPosition = initialPosition;
+
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            //sprite.delete();
-            sprite = new Picture(initialPosition.getX(), initialPosition.getY(),"resources/sprite-right.png");
+            sprite.delete();
+            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/sprite-front.png");
+            lastPosition = "front";
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
         }
     }
 
-
-   /* public void moveRight() {
-
-        sprite.translate(40,0);
-        simpleGfxGridPosition.setCol(simpleGfxGridPosition.getCol() +40);
-    }*/
-
     @Override
     public void moveLeft() {
         simpleGfxGridPosition.setCol((simpleGfxGridPosition.getCol() - 1));
         if (collisionDetector.canWalkPlayer1(this)) {
-            sprite.translate(-CELL_SIZE, 0);
-            //simpleGfxGridPosition.setCol(simpleGfxGridPosition.getCol() - 40);
+            System.out.println("Consigo andar!");
+            if (!(lastPosition.equals("left"))) {
+                System.out.println(simpleGfxGridPosition.getX() + " " + simpleGfxGridPosition.getY());
+                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/sprite-left.png");
+                lastPosition = "left";
+            } else {
+                sprite.translate(-CELL_SIZE, 0);
+                System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+            }
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            //sprite.delete();
-            sprite = new Picture(initialPosition.getX(), initialPosition.getY(), "resources/sprite-left.png");
+            sprite.delete();
+            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/sprite-front.png");
+            lastPosition = "front";
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
         }
@@ -93,12 +87,17 @@ public class Player1 extends Player {
     public void moveUp() {
         simpleGfxGridPosition.setRow((simpleGfxGridPosition.getRow() - 1));
         if (collisionDetector.canWalkPlayer1(this)) {
-            sprite.translate(0, -CELL_SIZE);
-            //simpleGfxGridPosition.setRow(simpleGfxGridPosition.getRow() - 40);
+            if (!(lastPosition.equals("back"))) {
+                System.out.println(simpleGfxGridPosition.getX() + " " + simpleGfxGridPosition.getY());
+                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/sprite-back.png");
+                lastPosition = "back";
+            } else {
+                sprite.translate(0, -CELL_SIZE);
+                System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+            }
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            //sprite.delete();
             sprite = new Picture(initialPosition.getX(), initialPosition.getY(), "resources/sprite-back.png");
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
@@ -109,12 +108,18 @@ public class Player1 extends Player {
     public void moveDown() {
         simpleGfxGridPosition.setRow((simpleGfxGridPosition.getRow() + 1));
         if (collisionDetector.canWalkPlayer1(this)) {
-            sprite.translate(0, CELL_SIZE);
-            //simpleGfxGridPosition.setRow(simpleGfxGridPosition.getRow() + 40);
+            if (!(lastPosition.equals("front"))) {
+                System.out.println(simpleGfxGridPosition.getX() + " " + simpleGfxGridPosition.getY());
+                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/sprite-front.png");
+                lastPosition = "front";
+            } else {
+                sprite.translate(0, CELL_SIZE);
+                System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+            }
+
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            //sprite.delete();
             sprite = new Picture(initialPosition.getX(), initialPosition.getY(), "resources/sprite-front.png");
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
@@ -125,7 +130,7 @@ public class Player1 extends Player {
         return sprite;
     }
 
-    public SimpleGfxGridPosition getSimpleGfxGridPosition(){
+    public SimpleGfxGridPosition getSimpleGfxGridPosition() {
         return simpleGfxGridPosition;
     }
 }
