@@ -51,7 +51,6 @@ public class Player1 extends Player {
 
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            sprite.delete();
             sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/frontboy1.png");
             lastPosition = "front";
             sprite.draw();
@@ -75,7 +74,6 @@ public class Player1 extends Player {
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            sprite.delete();
             sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/frontboy1.png");
             lastPosition = "front";
             sprite.draw();
@@ -98,7 +96,8 @@ public class Player1 extends Player {
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            sprite = new Picture(initialPosition.getX(), initialPosition.getY(), "resources/frontboy1.png");
+            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/frontboy1.png");
+            lastPosition = "front";
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
         }
@@ -120,7 +119,8 @@ public class Player1 extends Player {
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            sprite = new Picture(initialPosition.getX(), initialPosition.getY(), "resources/frontboy1.png");
+            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())) , "resources/frontboy1.png");
+            lastPosition = "front";
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
         }

@@ -155,27 +155,27 @@ public class Game implements KeyboardHandler {
            /* if( player2.getPosition().getCol() == field.getWidth() ) {
 
             }*/
-            player1.getSprite().delete();
+            player2.getSprite().delete();
             player2.moveRight();
-            player1.getSprite().draw();
+            player2.getSprite().draw();
         }
 
         if (keyboardEvent.getKey() == left2.getKey()){
-            player1.getSprite().delete();
+            player2.getSprite().delete();
             player2.moveLeft();
-            player1.getSprite().draw();
+            player2.getSprite().draw();
         }
 
         if(keyboardEvent.getKey() == up2.getKey()){
-            player1.getSprite().delete();
+            player2.getSprite().delete();
             player2.moveUp();
-            player1.getSprite().draw();
+            player2.getSprite().draw();
         }
 
         if(keyboardEvent.getKey() == down2.getKey()){
-            player1.getSprite().delete();
+            player2.getSprite().delete();
             player2.moveDown();
-            player1.getSprite().draw();
+            player2.getSprite().draw();
         }
     }
 
