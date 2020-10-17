@@ -14,10 +14,4 @@ abstract public class Tile {
          this.row = row;
          this.grid = grid;
      };
-
-     /*public init(){
-
-     }*/
-
-
 }

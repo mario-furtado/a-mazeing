@@ -13,7 +13,7 @@ public class Path extends Tile{
         super(row, col, grid);
 
         position = new SimpleGfxGridPosition(col,row,grid);
-        picture = new Picture(position.getX(), position.getY(),"resources/ff.png");
+        picture = new Picture(position.getX(), position.getY(),"resources/newpath.png");
 
     };
 

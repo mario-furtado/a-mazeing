@@ -13,7 +13,7 @@ public class FixedBush extends Tile {
         super(row, col, grid);
 
         position = new SimpleGfxGridPosition(col,row,grid);
-        picture = new Picture(position.getX(), position.getY(),"resources/bushbush.png");
+        picture = new Picture(position.getX(), position.getY(),"resources/newbush.png");
 
     };
 

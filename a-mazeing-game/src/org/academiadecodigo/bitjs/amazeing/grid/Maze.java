@@ -61,20 +61,20 @@ public class Maze {
 
                 /*GridColor color = GridColor.NOCOLOR;*/
 
-                SimpleGfxGridPosition position = new SimpleGfxGridPosition(col, row, grid/*, color*/);
+                SimpleGfxGridPosition position = new SimpleGfxGridPosition(col, row, grid);
 
                 switch (scheme[row][col]) {
-                    case 1:
-                        path = new Path(row,col,grid);
-                        path.init();
-                        /*color = GridColor.NOCOLOR;
-                        position.setColor(color);
-                        position.show();*/
-                        break;
                     case 0:
                         fixedBush = new FixedBush(row,col,grid);
                         fixedBush.init();
                         /*color = GridColor.GREEN;
+                        position.setColor(color);
+                        position.show();*/
+                        break;
+                    case 1:
+                        path = new Path(row,col,grid);
+                        path.init();
+                        /*color = GridColor.NOCOLOR;
                         position.setColor(color);
                         position.show();*/
                         break;
