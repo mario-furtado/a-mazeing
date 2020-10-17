@@ -2,6 +2,7 @@ package org.academiadecodigo.bitjs.amazeing.setup;
 
 
 import org.academiadecodigo.bitjs.amazeing.CollisionDetector;
+import org.academiadecodigo.bitjs.amazeing.EndingP2;
 import org.academiadecodigo.bitjs.amazeing.grid.Maze;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGridPosition;
@@ -13,17 +14,18 @@ public class Player2 extends Player {
     private SimpleGfxGridPosition initialPosition;
     private SimpleGfxGridPosition simpleGfxGridPosition;
     private CollisionDetector collisionDetector;
-    private static final int CELL_SIZE = 40;
-    private static final int INITIAL_COL = 44;
-    private static final int INITIAL_ROW = 10;
+    private static final int CELL_SIZE = 30;  //30
+    private static final int INITIAL_COL = 45; // 44
+    private static final int INITIAL_ROW = 11; //10
     private String lastPosition = "front";
+    private EndingP2 endingP2 = new EndingP2();
 
 
     public Player2(Maze maze, SimpleGfxGrid grid) {
         super(maze, grid);
         this.initialPosition = new SimpleGfxGridPosition(INITIAL_COL, INITIAL_ROW, grid);
         this.simpleGfxGridPosition = new SimpleGfxGridPosition(INITIAL_COL, INITIAL_ROW, grid);
-        sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/frontgirl1.png");
+        sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Fgirl1.png");
         this.collisionDetector = new CollisionDetector(getMaze());
     }
 
@@ -38,7 +40,7 @@ public class Player2 extends Player {
             System.out.println("Consigo andar!");
 
             if (!(lastPosition.equals("right"))) {
-                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/rightgirl.png");
+                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Rgirl.png");
                 lastPosition = "right";
 
             }else {
@@ -50,7 +52,7 @@ public class Player2 extends Player {
 
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY(initialPosition.getRow()), "resources/frontgirl1.png");
+            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY(initialPosition.getRow()), "resources/Fgirl1.png");
             lastPosition = "front";
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
@@ -64,7 +66,7 @@ public class Player2 extends Player {
             System.out.println("Consigo andar!");
 
             if (!(lastPosition.equals("left"))) {
-                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/leftgirl.png");
+                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Lgirl.png");
                 lastPosition = "left";
 
             } else {
@@ -75,10 +77,14 @@ public class Player2 extends Player {
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY(initialPosition.getRow()), "resources/frontgirl1.png");
+            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY(initialPosition.getRow()), "resources/Fgirl1.png");
             lastPosition = "front";
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+        }
+        if(collisionDetector.winPlayer2(this)){
+            endingP2.init(this);
+            sprite.delete();
         }
     }
 
@@ -87,7 +93,7 @@ public class Player2 extends Player {
         simpleGfxGridPosition.setRow((simpleGfxGridPosition.getRow() - 1));
         if (collisionDetector.canWalkPlayer2(this)) {
             if (!(lastPosition.equals("back"))) {
-                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/backgirl.png");
+                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Ugirl.png");
                 lastPosition = "back";
 
             } else {
@@ -98,10 +104,14 @@ public class Player2 extends Player {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
             //sprite.delete();
-            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/frontgirl1.png");
+            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/Fgirl1.png");
             lastPosition = "front";
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+        }
+        if(collisionDetector.winPlayer2(this)){
+            endingP2.init(this);
+            sprite.delete();
         }
     }
 
@@ -110,7 +120,7 @@ public class Player2 extends Player {
         simpleGfxGridPosition.setRow((simpleGfxGridPosition.getRow() + 1));
         if (collisionDetector.canWalkPlayer2(this)) {
             if (!(lastPosition.equals("front"))) {
-                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/frontgirl2.png");
+                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Fgirl2.png");
                 lastPosition = "front";
 
             }else {
@@ -120,7 +130,7 @@ public class Player2 extends Player {
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())) , "resources/frontgirl1.png");
+            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())) , "resources/Fgirl1.png");
             lastPosition = "front";
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());

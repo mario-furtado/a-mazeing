@@ -13,7 +13,7 @@ public class WalkableBush extends Tile{
         super(row, col, grid);
 
         position = new SimpleGfxGridPosition(col,row,grid);
-        picture = new Picture(position.getX(), position.getY(),"resources/newbush.png");
+        picture = new Picture(position.getX(), position.getY(),"resources/TREE.png");
 
     };
 

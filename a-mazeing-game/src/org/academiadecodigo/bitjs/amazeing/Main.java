@@ -6,16 +6,12 @@ import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGrid;
 
 public class Main {
     public static void main(String[] args) {
-        SimpleGfxGrid simpleGfxGrid = new SimpleGfxGrid(45,21);
-        /*FieldElements fieldElements = new FieldElements(simpleGfxGrid);*/
-        Maze maze = new Maze();
-        /*maze.paintMaze(simpleGfxGrid);*/
-
-        Game game = new Game(simpleGfxGrid, /*fieldElements,*/ maze);
-
+        SimpleGfxGrid simpleGfxGrid = new SimpleGfxGrid(47,23); // 45  21
+        //Maze maze = new Maze();
+        /*Game game = new Game(simpleGfxGrid, maze);
         game.start();
-
-        /*Maze maze = new Maze();*/
+       */
+       InicialMenu menu = new InicialMenu(simpleGfxGrid);
 
 
     }

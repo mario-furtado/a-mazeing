@@ -10,7 +10,7 @@ public class SimpleGfxGrid implements Grid {
     public static final int PADDING = 10;
     private int cols;
     private int rows;
-    private static final int CELL_SIZE = 40;
+    private static final int CELL_SIZE = 30; // 40
     private Rectangle rectangle;
 
     public SimpleGfxGrid(int cols, int rows){

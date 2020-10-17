@@ -20,6 +20,7 @@ public class Game implements KeyboardHandler {
     private Player1 player1;
     private Player2 player2;
     private Maze maze;
+    private InicialMenu menu;
 
     //PLAYERS MOVEMENT:
     private KeyboardEvent right;
@@ -31,13 +32,33 @@ public class Game implements KeyboardHandler {
     private KeyboardEvent up2;
     private KeyboardEvent down2;
 
+    //MENU:
+    /*private KeyboardEvent startMenu;*/
+    /*private KeyboardEvent quitMenu;*/
 
-    public Game(SimpleGfxGrid simpleGfxGrid, /*FieldElements fieldElements,*/ Maze maze){
+    //RENDER:
+    /*private Render render = Render.MENU;*/
+
+
+    /*public void renderType(){*/
+    /*    if(render == Render.MENU){*/
+    /*        menu.initMenu();*/
+    /*    }*/
+    /*    if(render == Render.GAME){*/
+    /*        this.start();*/
+    /*    }*/
+    /*}*/
+
+
+    public Game(SimpleGfxGrid simpleGfxGrid/*FieldElements fieldElements, Maze maze*/){
         this.simpleGfxGrid = simpleGfxGrid;       /*= new SimpleGfxGrid(60,28)*/;
        /* this.fieldElements = fieldElements; */     /*= new BoarderLine(maze)*/;
-        this.maze = maze;
+        this.maze = new Maze();
         this.player1 = new Player1(maze,simpleGfxGrid);
         this.player2 = new Player2(maze,simpleGfxGrid);
+        //this.menu = new InicialMenu(simpleGfxGrid);
+        //this.renderType();
+        //bootstrapMenu();
     }
 
     public void start(){
@@ -46,14 +67,14 @@ public class Game implements KeyboardHandler {
         /*fieldElements.bushesFactory();
         fieldElements.middleLineFactory();*/
         player1.init();
-        System.out.println("ESTAAAA " + (player1.getSimpleGfxGridPosition().getCol() + " " + (player1.getSimpleGfxGridPosition().getRow())));
+       // System.out.println("ESTAAAA " + (player1.getSimpleGfxGridPosition().getCol() + " " + (player1.getSimpleGfxGridPosition().getRow())));
         player2.init();
-        init();
+        initP();
     }
 
     //--------------PLAYERS MOVEMENT--------------
 
-    public void init(){
+    public void initP(){
         bootstrapP1();
         bootstrapP2();
     }
@@ -119,6 +140,23 @@ public class Game implements KeyboardHandler {
         keyboard2.addEventListener(down);
     }
 
+    //-------menu bootstrap--------//
+
+   /* private void bootstrapMenu(){
+        Keyboard keyboard3 = new Keyboard(this);
+
+        startMenu = new KeyboardEvent();
+        startMenu.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        startMenu.setKey(KeyboardEvent.KEY_SPACE);
+        keyboard3.addEventListener(startMenu);
+
+        quitMenu = new KeyboardEvent();
+        quitMenu.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+        quitMenu.setKey(KeyboardEvent.KEY_E);
+        keyboard3.addEventListener(quitMenu);
+
+    }*/
+
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -151,6 +189,7 @@ public class Game implements KeyboardHandler {
             player1.getSprite().draw();
         }
 // --------- Player2 ------------------------//
+
         if (keyboardEvent.getKey() == right2.getKey()){
            /* if( player2.getPosition().getCol() == field.getWidth() ) {
 
@@ -177,6 +216,19 @@ public class Game implements KeyboardHandler {
             player2.moveDown();
             player2.getSprite().draw();
         }
+
+        //-----menu-----//
+
+        /*if(keyboardEvent.getKey() == startMenu.getKey()){
+            render = Render.GAME;
+            System.out.println("space");
+        }
+
+        if(keyboardEvent.getKey() == quitMenu.getKey()){
+             System.exit(0);
+            System.out.println("quit");
+
+        }*/
     }
 
     @Override
