@@ -1,3 +1,4 @@
+/*
 package org.academiadecodigo.bitjs.amazeing.grid;
 
 import org.academiadecodigo.bitjs.amazeing.grid.position.GridColor;
@@ -37,4 +38,5 @@ public class FieldElements {
        }
     }
 }
+*/
 

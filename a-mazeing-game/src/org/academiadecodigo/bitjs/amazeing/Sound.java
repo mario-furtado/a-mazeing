@@ -1,3 +1,4 @@
+
 package org.academiadecodigo.bitjs.amazeing;
 
 import javax.sound.sampled.*;
@@ -14,11 +15,13 @@ public class Sound {
         initClip(path);
     }
 
-    /**
+
+/**
      * Plays the clip from the point it was stopped or from start if passed with the fromStart argument false or true
      *
      * @param fromStart should be true if want to replay the sound from the start or false otherwise
      */
+
     public void play(boolean fromStart) {
 
         if (fromStart) {
@@ -77,4 +80,5 @@ public class Sound {
         }
     }
 }
+
 

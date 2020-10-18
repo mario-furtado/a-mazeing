@@ -2,6 +2,7 @@ package org.academiadecodigo.bitjs.amazeing.setup;
 
 
 import org.academiadecodigo.bitjs.amazeing.CollisionDetector;
+import org.academiadecodigo.bitjs.amazeing.EndingP1;
 import org.academiadecodigo.bitjs.amazeing.EndingP2;
 import org.academiadecodigo.bitjs.amazeing.grid.Maze;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGrid;
@@ -9,6 +10,7 @@ import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGridPosition;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Player2 extends Player {
+
 
     private Picture sprite;
     private SimpleGfxGridPosition initialPosition;
@@ -18,7 +20,10 @@ public class Player2 extends Player {
     private static final int INITIAL_COL = 45; // 44
     private static final int INITIAL_ROW = 11; //10
     private String lastPosition = "front";
-    private EndingP2 endingP2 = new EndingP2();
+    private EndingP2 endingP2;
+    private EndingP1 endingP1;
+
+    private int life = 3;
 
 
     public Player2(Maze maze, SimpleGfxGrid grid) {
@@ -27,9 +32,12 @@ public class Player2 extends Player {
         this.simpleGfxGridPosition = new SimpleGfxGridPosition(INITIAL_COL, INITIAL_ROW, grid);
         sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Fgirl1.png");
         this.collisionDetector = new CollisionDetector(getMaze());
+        this.endingP1 = new EndingP1();
+        this.endingP2 = new EndingP2();
     }
 
     public void init() {
+        simpleGfxGridPosition = initialPosition;
         sprite.draw();
     }
 
@@ -72,6 +80,7 @@ public class Player2 extends Player {
             } else {
                 sprite.translate(-CELL_SIZE, 0);  // x e y
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+                isDead();
             }
 
         } else {
@@ -81,9 +90,10 @@ public class Player2 extends Player {
             lastPosition = "front";
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+            isDead();
         }
         if(collisionDetector.winPlayer2(this)){
-            endingP2.init(this);
+            endingP2.init();
             sprite.delete();
         }
     }
@@ -108,9 +118,10 @@ public class Player2 extends Player {
             lastPosition = "front";
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+            isDead();
         }
         if(collisionDetector.winPlayer2(this)){
-            endingP2.init(this);
+            endingP2.init();
             sprite.delete();
         }
     }
@@ -134,6 +145,7 @@ public class Player2 extends Player {
             lastPosition = "front";
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+            isDead();
         }
     }
 
@@ -145,4 +157,13 @@ public class Player2 extends Player {
     public SimpleGfxGridPosition getSimpleGfxGridPosition() {
         return simpleGfxGridPosition;
     }
+
+    public int isDead(){
+        this.life = life -1;
+        if(life == 0){
+            endingP1.init();
+        }
+        return life;
+    }
 }
+

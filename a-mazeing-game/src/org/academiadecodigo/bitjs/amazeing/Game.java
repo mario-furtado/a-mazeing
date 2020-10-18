@@ -1,6 +1,6 @@
 package org.academiadecodigo.bitjs.amazeing;
 
-import org.academiadecodigo.bitjs.amazeing.grid.FieldElements;
+//import org.academiadecodigo.bitjs.amazeing.grid.FieldElements;
 import org.academiadecodigo.bitjs.amazeing.grid.Maze;
 import org.academiadecodigo.bitjs.amazeing.setup.Player1;
 import org.academiadecodigo.bitjs.amazeing.setup.Player2;
@@ -196,13 +196,13 @@ public class Game implements KeyboardHandler {
             }*/
             player2.getSprite().delete();
             player2.moveRight();
-            player2.getSprite().draw();
+           player2.getSprite().draw();
         }
 
         if (keyboardEvent.getKey() == left2.getKey()){
             player2.getSprite().delete();
             player2.moveLeft();
-            player2.getSprite().draw();
+           player2.getSprite().draw();
         }
 
         if(keyboardEvent.getKey() == up2.getKey()){
@@ -214,7 +214,7 @@ public class Game implements KeyboardHandler {
         if(keyboardEvent.getKey() == down2.getKey()){
             player2.getSprite().delete();
             player2.moveDown();
-            player2.getSprite().draw();
+            //player2.getSprite().draw();
         }
 
         //-----menu-----//

@@ -9,8 +9,8 @@ public class EndingP2 {
 
     public EndingP2(){}
 
-    public void init(Player2 player2){
-        player2.getSprite().delete();
+    public void init(/*Player2 player2*/){
+        //player2.getSprite().delete();
         picture.draw();
     }
 }
