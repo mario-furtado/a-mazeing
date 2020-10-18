@@ -1,6 +1,5 @@
 package org.academiadecodigo.bitjs.amazeing.setup;
 
-
 import org.academiadecodigo.bitjs.amazeing.CollisionDetector;
 import org.academiadecodigo.bitjs.amazeing.EndingP1;
 import org.academiadecodigo.bitjs.amazeing.EndingP2;
@@ -17,13 +16,16 @@ public class Player2 extends Player {
     private SimpleGfxGridPosition simpleGfxGridPosition;
     private CollisionDetector collisionDetector;
     private static final int CELL_SIZE = 30;  //30
-    private static final int INITIAL_COL = 45; // 44
+private static final int INITIAL_COL = 45; // 44
     private static final int INITIAL_ROW = 11; //10
     private String lastPosition = "front";
+
     private EndingP2 endingP2;
     private EndingP1 endingP1;
 
     private int life = 3;
+    private EndingP2 endingP2 = new EndingP2();
+    private boolean canPlay = true;
 
 
     public Player2(Maze maze, SimpleGfxGrid grid) {
@@ -43,45 +45,66 @@ public class Player2 extends Player {
 
     @Override
     public void moveRight() {
-        simpleGfxGridPosition.setCol(simpleGfxGridPosition.getCol() + 1);
-        if (collisionDetector.canWalkPlayer2(this)) {
-            System.out.println("Consigo andar!");
+        if (canPlay) {
 
-            if (!(lastPosition.equals("right"))) {
-                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Rgirl.png");
-                lastPosition = "right";
+            simpleGfxGridPosition.setCol(simpleGfxGridPosition.getCol() + 1);
+            if (collisionDetector.canWalkPlayer2(this)) {
+                System.out.println("Consigo andar!");
 
-            }else {
-                sprite.translate(CELL_SIZE, 0);  // x e y
+                if (!(lastPosition.equals("right"))) {
+                    sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Rgirl.png");
+                    lastPosition = "right";
+
+                } else {
+                    sprite.translate(CELL_SIZE, 0);  // x e y
+                    System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+                }
+
+            } else {
+
+                this.simpleGfxGridPosition.setCol(INITIAL_COL);
+                this.simpleGfxGridPosition.setRow(INITIAL_ROW);
+                sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY(initialPosition.getRow()), "resources/Fgirl1.png");
+                lastPosition = "front";
+                sprite.draw();
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
             }
 
-        } else {
+            getSprite().draw();
 
-            this.simpleGfxGridPosition.setCol(INITIAL_COL);
-            this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY(initialPosition.getRow()), "resources/Fgirl1.png");
-            lastPosition = "front";
-            sprite.draw();
-            System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+            if (collisionDetector.winPlayer2(this)) {
+                endingP2.init(this);
+                sprite.delete();
+            }
         }
     }
 
     @Override
     public void moveLeft() {
-        simpleGfxGridPosition.setCol((simpleGfxGridPosition.getCol() - 1));
-        if (collisionDetector.canWalkPlayer2(this)) {
-            System.out.println("Consigo andar!");
+        if (canPlay) {
+            simpleGfxGridPosition.setCol((simpleGfxGridPosition.getCol() - 1));
+            if (collisionDetector.canWalkPlayer2(this)) {
+                System.out.println("Consigo andar!");
 
-            if (!(lastPosition.equals("left"))) {
-                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Lgirl.png");
-                lastPosition = "left";
+                if (!(lastPosition.equals("left"))) {
+                    sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Lgirl.png");
+                    lastPosition = "left";
+
+                } else {
+                    sprite.translate(-CELL_SIZE, 0);  // x e y
+                    System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+                }
 
             } else {
-                sprite.translate(-CELL_SIZE, 0);  // x e y
+                this.simpleGfxGridPosition.setCol(INITIAL_COL);
+                this.simpleGfxGridPosition.setRow(INITIAL_ROW);
+                sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY(initialPosition.getRow()), "resources/Fgirl1.png");
+                lastPosition = "front";
+                sprite.draw();
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
                 isDead();
             }
+            getSprite().draw();
 
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
@@ -92,23 +115,36 @@ public class Player2 extends Player {
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
             isDead();
         }
-        if(collisionDetector.winPlayer2(this)){
-            endingP2.init();
-            sprite.delete();
+                  if (collisionDetector.winPlayer2(this)) {
+                endingP2.init(this);
+                sprite.delete();
+            }
         }
     }
 
     @Override
     public void moveUp() {
-        simpleGfxGridPosition.setRow((simpleGfxGridPosition.getRow() - 1));
-        if (collisionDetector.canWalkPlayer2(this)) {
-            if (!(lastPosition.equals("back"))) {
-                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Ugirl.png");
-                lastPosition = "back";
+        if (canPlay) {
+            simpleGfxGridPosition.setRow((simpleGfxGridPosition.getRow() - 1));
+            if (collisionDetector.canWalkPlayer2(this)) {
+                if (!(lastPosition.equals("back"))) {
+                    sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Ugirl.png");
+                    lastPosition = "back";
+
+                } else {
+                    sprite.translate(0, -CELL_SIZE);
+                }
 
             } else {
-            sprite.translate(0, -CELL_SIZE);
+                this.simpleGfxGridPosition.setCol(INITIAL_COL);
+                this.simpleGfxGridPosition.setRow(INITIAL_ROW);
+                //sprite.delete();
+                sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/Fgirl1.png");
+                lastPosition = "front";
+                sprite.draw();
+                System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
             }
+            getSprite().draw();
 
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
@@ -120,23 +156,35 @@ public class Player2 extends Player {
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
             isDead();
         }
-        if(collisionDetector.winPlayer2(this)){
-            endingP2.init();
-            sprite.delete();
+                if (collisionDetector.winPlayer2(this)) {
+                endingP2.init(this);
+                sprite.delete();
+            }
         }
     }
 
     @Override
     public void moveDown() {
-        simpleGfxGridPosition.setRow((simpleGfxGridPosition.getRow() + 1));
-        if (collisionDetector.canWalkPlayer2(this)) {
-            if (!(lastPosition.equals("front"))) {
-                sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Fgirl2.png");
-                lastPosition = "front";
+        if (canPlay) {
+            simpleGfxGridPosition.setRow((simpleGfxGridPosition.getRow() + 1));
+            if (collisionDetector.canWalkPlayer2(this)) {
+                if (!(lastPosition.equals("front"))) {
+                    sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Fgirl2.png");
+                    lastPosition = "front";
 
-            }else {
-            sprite.translate(0, CELL_SIZE);
+                } else {
+                    sprite.translate(0, CELL_SIZE);
+                }
+
+            } else {
+                this.simpleGfxGridPosition.setCol(INITIAL_COL);
+                this.simpleGfxGridPosition.setRow(INITIAL_ROW);
+                sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/Fgirl1.png");
+                lastPosition = "front";
+                sprite.draw();
+                System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
             }
+            getSprite().draw();
 
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
@@ -146,9 +194,12 @@ public class Player2 extends Player {
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
             isDead();
+            if (collisionDetector.winPlayer2(this)) {
+                sprite.delete();
+                endingP2.init(this);
+            }
         }
     }
-
 
     public Picture getSprite() {
         return sprite;
@@ -164,6 +215,9 @@ public class Player2 extends Player {
             endingP1.init();
         }
         return life;
+
+    public void setCanPlay(boolean play){
+        this.canPlay = play;
     }
 }
 

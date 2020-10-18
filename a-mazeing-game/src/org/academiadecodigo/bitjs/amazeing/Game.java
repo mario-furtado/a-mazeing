@@ -13,10 +13,6 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 public class Game implements KeyboardHandler {
 
     private SimpleGfxGrid simpleGfxGrid;
-    //public SimpleGfxGridPosition position = new SimpleGfxGridPosition(0,0, maze, GridColor.GREEN);
-
-    /*private FieldElements fieldElements;*/
-
     private Player1 player1;
     private Player2 player2;
     private Maze maze;
@@ -32,22 +28,21 @@ public class Game implements KeyboardHandler {
     private KeyboardEvent up2;
     private KeyboardEvent down2;
 
-    //MENU:
-    /*private KeyboardEvent startMenu;*/
-    /*private KeyboardEvent quitMenu;*/
+    /*MENU:
+    private KeyboardEvent startMenu;
+    private KeyboardEvent quitMenu;
 
     //RENDER:
-    /*private Render render = Render.MENU;*/
+    private Render render = Render.MENU;
 
 
-    /*public void renderType(){*/
-    /*    if(render == Render.MENU){*/
-    /*        menu.initMenu();*/
-    /*    }*/
-    /*    if(render == Render.GAME){*/
-    /*        this.start();*/
-    /*    }*/
-    /*}*/
+    public void renderType(){
+       if(render == Render.MENU){
+            menu.initMenu();
+        }
+       if(render == Render.GAME){
+           this.start();
+       }*/
 
 
     public Game(SimpleGfxGrid simpleGfxGrid/*FieldElements fieldElements, Maze maze*/){
@@ -64,8 +59,6 @@ public class Game implements KeyboardHandler {
     public void start(){
         simpleGfxGrid.init();
         maze.paintMaze(simpleGfxGrid);
-        /*fieldElements.bushesFactory();
-        fieldElements.middleLineFactory();*/
         player1.init();
        // System.out.println("ESTAAAA " + (player1.getSimpleGfxGridPosition().getCol() + " " + (player1.getSimpleGfxGridPosition().getRow())));
         player2.init();
@@ -78,7 +71,7 @@ public class Game implements KeyboardHandler {
         bootstrapP1();
         bootstrapP2();
     }
-
+//-----------------PLAYER 2 ---------------------------------------
     private void bootstrapP1(){
 
         Keyboard keyboard1 = new Keyboard(this);
@@ -90,7 +83,6 @@ public class Game implements KeyboardHandler {
         keyboard1.addEventListener(right2);
 
 
-
         // mover player para a esquerda (<- e A)
         left2 = new KeyboardEvent();
         left2.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
@@ -98,13 +90,11 @@ public class Game implements KeyboardHandler {
         keyboard1.addEventListener(left2);
 
 
-
         // mover player para cima (^ e W)
         up2 = new KeyboardEvent();
         up2.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
         up2.setKey(KeyboardEvent.KEY_UP);
         keyboard1.addEventListener(up2);
-
 
 
         //mover player para baixo (v e S)
@@ -116,6 +106,7 @@ public class Game implements KeyboardHandler {
 
     }
 
+    //-----------------PLAYER 1 ---------------------------------------
     private  void bootstrapP2(){
         Keyboard keyboard2 = new Keyboard(this);
 
@@ -167,26 +158,26 @@ public class Game implements KeyboardHandler {
             }*/
             player1.getSprite().delete();
             player1.moveRight();
-            player1.getSprite().draw();
+            //player1.getSprite().draw();
         }
 
         if (keyboardEvent.getKey() == left.getKey()){
             //if( player1.getPosition().getCol() == field.g)
             player1.getSprite().delete();
             player1.moveLeft();
-            player1.getSprite().draw();
+            //player1.getSprite().draw();
         }
 
         if(keyboardEvent.getKey() == up.getKey()){
             player1.getSprite().delete();
             player1.moveUp();
-            player1.getSprite().draw();
+            //player1.getSprite().draw();
         }
 
         if(keyboardEvent.getKey() == down.getKey()){
             player1.getSprite().delete();
             player1.moveDown();
-            player1.getSprite().draw();
+            //player1.getSprite().draw();
         }
 // --------- Player2 ------------------------//
 
@@ -196,19 +187,20 @@ public class Game implements KeyboardHandler {
             }*/
             player2.getSprite().delete();
             player2.moveRight();
-           player2.getSprite().draw();
+
+            //player2.getSprite().draw();
         }
 
         if (keyboardEvent.getKey() == left2.getKey()){
             player2.getSprite().delete();
             player2.moveLeft();
-           player2.getSprite().draw();
+            //player2.getSprite().draw();
         }
 
         if(keyboardEvent.getKey() == up2.getKey()){
             player2.getSprite().delete();
             player2.moveUp();
-            player2.getSprite().draw();
+            //player2.getSprite().draw();
         }
 
         if(keyboardEvent.getKey() == down2.getKey()){

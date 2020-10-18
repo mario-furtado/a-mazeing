@@ -19,9 +19,11 @@ public class Player1 extends Player {
     private static final int INITIAL_COL = 1;  //0
     private static final int INITIAL_ROW = 11;  //10
     private String lastPosition = "front";
+
     private EndingP1 endingP1;
     private EndingP2 endingP2;
 
+    private EndingP1 endingP1 = new EndingP1();
     private boolean canPlay = true;
 
     private int life = 3;
@@ -31,7 +33,7 @@ public class Player1 extends Player {
         super(maze, grid);
         this.initialPosition = new SimpleGfxGridPosition(INITIAL_COL, INITIAL_ROW, grid);
         this.simpleGfxGridPosition = new SimpleGfxGridPosition(INITIAL_COL, INITIAL_ROW, grid);
-        sprite = new Picture(simpleGfxGridPosition.getX(), simpleGfxGridPosition.getY(), "resources/Fboy1.png");
+        sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Fboy1.png");
         this.collisionDetector = new CollisionDetector(getMaze());
         this.endingP1 = new EndingP1();
         this.endingP2 = new EndingP2();
@@ -43,7 +45,6 @@ public class Player1 extends Player {
 
     @Override
     public void moveRight() {
-        //deletePlayer1();
         if(canPlay) {
 
             simpleGfxGridPosition.setCol(simpleGfxGridPosition.getCol() + 1);
@@ -69,9 +70,12 @@ public class Player1 extends Player {
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
                 isDead();
             }
-            if (collisionDetector.winPlayer1(this)) {
 
-                endingP1.init();
+                //endingP1.init();
+            getSprite().draw();
+
+            if (collisionDetector.winPlayer1(this)) {
+                endingP1.init(this);
                 sprite.delete();
             }
         }
@@ -100,6 +104,13 @@ public class Player1 extends Player {
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
                 isDead();
             }
+
+            getSprite().draw();
+
+            if (collisionDetector.winPlayer1(this)) {
+                endingP1.init(this);
+                sprite.delete();
+            }
         }
     }
 
@@ -124,6 +135,13 @@ public class Player1 extends Player {
                 sprite.draw();
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
                 isDead();
+            }
+
+            getSprite().draw();
+
+            if (collisionDetector.winPlayer1(this)) {
+                endingP1.init(this);
+                sprite.delete();
             }
         }
     }
@@ -151,10 +169,14 @@ public class Player1 extends Player {
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
                 isDead();
             }
+
+            getSprite().draw();
+
             if (collisionDetector.winPlayer1(this)) {
                 sprite.delete();
-                endingP1.init();
+               // endingP1.init();
 
+                //endingP1.init(this);
             }
         }
     }
@@ -166,19 +188,11 @@ public class Player1 extends Player {
     public SimpleGfxGridPosition getSimpleGfxGridPosition() {
         return simpleGfxGridPosition;
     }
+
     public void setCanPlay(boolean play){
         this.canPlay = play;
-
     }
-
-    /*public void deletePlayer1 (){
-
-        if(simpleGfxGridPosition.getCol() == 23 && simpleGfxGridPosition.getRow() == 11){
-            getSprite().delete();
-            setCanPlay(false);
-        }
-    }*/
-
+    
     public int isDead(){
         this.life = life -1;
         if(life == 0){
