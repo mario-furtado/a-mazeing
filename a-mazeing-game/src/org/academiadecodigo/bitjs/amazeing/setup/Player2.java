@@ -16,7 +16,7 @@ public class Player2 extends Player {
     private SimpleGfxGridPosition simpleGfxGridPosition;
     private CollisionDetector collisionDetector;
     private static final int CELL_SIZE = 30;  //30
-private static final int INITIAL_COL = 45; // 44
+    private static final int INITIAL_COL = 45; // 44
     private static final int INITIAL_ROW = 11; //10
     private String lastPosition = "front";
 
@@ -24,7 +24,6 @@ private static final int INITIAL_COL = 45; // 44
     private EndingP1 endingP1;
 
     private int life = 3;
-    private EndingP2 endingP2 = new EndingP2();
     private boolean canPlay = true;
 
 
@@ -70,10 +69,10 @@ private static final int INITIAL_COL = 45; // 44
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
             }
 
-            getSprite().draw();
+            sprite.draw();
 
             if (collisionDetector.winPlayer2(this)) {
-                endingP2.init(this);
+                endingP2.init();
                 sprite.delete();
             }
         }
@@ -104,7 +103,7 @@ private static final int INITIAL_COL = 45; // 44
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
                 isDead();
             }
-            getSprite().draw();
+            sprite.draw();
 
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
@@ -115,12 +114,12 @@ private static final int INITIAL_COL = 45; // 44
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
             isDead();
         }
-                  if (collisionDetector.winPlayer2(this)) {
-                endingP2.init(this);
-                sprite.delete();
-            }
+        if (collisionDetector.winPlayer2(this)) {
+            endingP2.init();
+            sprite.delete();
         }
     }
+
 
     @Override
     public void moveUp() {
@@ -144,7 +143,7 @@ private static final int INITIAL_COL = 45; // 44
                 sprite.draw();
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
             }
-            getSprite().draw();
+            sprite.draw();
 
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
@@ -156,12 +155,12 @@ private static final int INITIAL_COL = 45; // 44
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
             isDead();
         }
-                if (collisionDetector.winPlayer2(this)) {
-                endingP2.init(this);
-                sprite.delete();
-            }
+        if (collisionDetector.winPlayer2(this)) {
+            endingP2.init();
+            sprite.delete();
         }
     }
+
 
     @Override
     public void moveDown() {
@@ -189,14 +188,14 @@ private static final int INITIAL_COL = 45; // 44
         } else {
             this.simpleGfxGridPosition.setCol(INITIAL_COL);
             this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())) , "resources/Fgirl1.png");
+            sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/Fgirl1.png");
             lastPosition = "front";
             sprite.draw();
             System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
             isDead();
             if (collisionDetector.winPlayer2(this)) {
                 sprite.delete();
-                endingP2.init(this);
+                endingP2.init();
             }
         }
     }
@@ -209,14 +208,15 @@ private static final int INITIAL_COL = 45; // 44
         return simpleGfxGridPosition;
     }
 
-    public int isDead(){
-        this.life = life -1;
-        if(life == 0){
+    public int isDead() {
+        this.life = life - 1;
+        if (life == 0) {
             endingP1.init();
         }
         return life;
+    }
 
-    public void setCanPlay(boolean play){
+    public void setCanPlay(boolean play) {
         this.canPlay = play;
     }
 }

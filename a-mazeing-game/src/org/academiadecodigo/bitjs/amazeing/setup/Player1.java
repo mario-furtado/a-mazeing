@@ -22,8 +22,6 @@ public class Player1 extends Player {
 
     private EndingP1 endingP1;
     private EndingP2 endingP2;
-
-    private EndingP1 endingP1 = new EndingP1();
     private boolean canPlay = true;
 
     private int life = 3;
@@ -71,11 +69,10 @@ public class Player1 extends Player {
                 isDead();
             }
 
-                //endingP1.init();
             getSprite().draw();
 
             if (collisionDetector.winPlayer1(this)) {
-                endingP1.init(this);
+                endingP1.init();
                 sprite.delete();
             }
         }
@@ -108,7 +105,7 @@ public class Player1 extends Player {
             getSprite().draw();
 
             if (collisionDetector.winPlayer1(this)) {
-                endingP1.init(this);
+                endingP1.init();
                 sprite.delete();
             }
         }
@@ -140,7 +137,7 @@ public class Player1 extends Player {
             getSprite().draw();
 
             if (collisionDetector.winPlayer1(this)) {
-                endingP1.init(this);
+                endingP1.init();
                 sprite.delete();
             }
         }
