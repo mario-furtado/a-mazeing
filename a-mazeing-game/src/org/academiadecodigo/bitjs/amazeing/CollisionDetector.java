@@ -11,7 +11,6 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class CollisionDetector {
 
     private Maze maze;
-    private static final int PADDING = 10;
 
     public CollisionDetector(Maze maze) {
         this.maze = maze;
@@ -46,8 +45,6 @@ public class CollisionDetector {
         return true;
     }
 
-
-
     public boolean canWalkPlayer1(Player1 player) {
 
         SimpleGfxGridPosition position = player.getSimpleGfxGridPosition();
@@ -55,7 +52,8 @@ public class CollisionDetector {
         int colP = position.getCol();
         int rowP = position.getRow();
 
-        if (maze.getScheme()[rowP][colP] == 0 || maze.getScheme()[rowP][colP] == 2 || maze.getScheme()[rowP][colP] == 6 || maze.getScheme()[rowP][colP] == 7 || maze.getScheme()[rowP][colP] == 12) {//maze.getScheme()[row][col] == 0 && colP == col && rowP == row) {
+        if (maze.getScheme()[rowP][colP] == 0 || maze.getScheme()[rowP][colP] == 2 || maze.getScheme()[rowP][colP] == 6
+                || maze.getScheme()[rowP][colP] == 7 || maze.getScheme()[rowP][colP] == 12) {
             return false;
         }
 

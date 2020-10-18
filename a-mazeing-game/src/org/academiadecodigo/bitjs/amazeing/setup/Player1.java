@@ -2,6 +2,7 @@ package org.academiadecodigo.bitjs.amazeing.setup;
 
 import org.academiadecodigo.bitjs.amazeing.CollisionDetector;
 import org.academiadecodigo.bitjs.amazeing.Game;
+import org.academiadecodigo.bitjs.amazeing.Sound;
 import org.academiadecodigo.bitjs.amazeing.grid.Maze;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGridPosition;
@@ -16,12 +17,15 @@ public class Player1 extends Player {
     private static final int CELL_SIZE = 30;  //40
     private static final int INITIAL_COL = 1;  //0
     private static final int INITIAL_ROW = 11;  //10
-    private String lastPosition = "front";
-    private boolean canPlay = true;
+    private String lastPosition;
+    private boolean canPlay;
     private Player2 player2;
     private Game game;
-
-    private int life = 3;
+    private Sound boySound = new Sound("/resources/sound/NoSoundPlayer1.wav");
+    private Picture heart1boy = new Picture(12, 360, "resources/newHeart.png");
+    private Picture heart2boy = new Picture(12, 390, "resources/newHeart.png");
+    private Picture heart3boy = new Picture(12, 420, "resources/newHeart.png");
+    private int life;
 
 
     public Player1(Maze maze, SimpleGfxGrid grid, Player2 player2, Game game) {
@@ -32,19 +36,23 @@ public class Player1 extends Player {
         this.collisionDetector = new CollisionDetector(getMaze());
         this.player2 = player2;
         this.game = game;
+        this.life = 3;
+        this.canPlay = true;
+        this.lastPosition = "front";
     }
 
     public void init() {
         sprite.draw();
+        heart1boy.draw();
+        heart2boy.draw();
+        heart3boy.draw();
     }
 
     @Override
     public void moveRight() {
-        if(canPlay) {
-
+        if (canPlay) {
             simpleGfxGridPosition.setCol(simpleGfxGridPosition.getCol() + 1);
             if (collisionDetector.canWalkPlayer1(this)) {
-                System.out.println("Consigo andar!");
 
                 if (!(lastPosition.equals("right"))) {
                     sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Rboy.png");
@@ -56,10 +64,11 @@ public class Player1 extends Player {
 
                 }
                 getSprite().draw();
-            } else {
 
+            } else {
                 this.simpleGfxGridPosition.setCol(INITIAL_COL);
                 this.simpleGfxGridPosition.setRow(INITIAL_ROW);
+                boySound.play(true);
                 sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/Fboy1.png");
                 lastPosition = "front";
                 sprite.draw();
@@ -67,9 +76,7 @@ public class Player1 extends Player {
                 isDead();
             }
 
-            //getSprite().draw();
-
-            if (collisionDetector.winPlayer1(this,player2)) {
+            if (collisionDetector.winPlayer1(this, player2)) {
                 sprite.delete();
                 player2.getSprite().delete();
                 game.endingP1();
@@ -79,10 +86,9 @@ public class Player1 extends Player {
 
     @Override
     public void moveLeft() {
-        if(canPlay) {
+        if (canPlay) {
             simpleGfxGridPosition.setCol((simpleGfxGridPosition.getCol() - 1));
             if (collisionDetector.canWalkPlayer1(this)) {
-                System.out.println("Consigo andar!");
                 if (!(lastPosition.equals("left"))) {
                     System.out.println(simpleGfxGridPosition.getX() + " " + simpleGfxGridPosition.getY());
                     sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Lboy.png");
@@ -95,16 +101,14 @@ public class Player1 extends Player {
             } else {
                 this.simpleGfxGridPosition.setCol(INITIAL_COL);
                 this.simpleGfxGridPosition.setRow(INITIAL_ROW);
+                boySound.play(true);
                 sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/Fboy1.png");
                 lastPosition = "front";
                 sprite.draw();
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
                 isDead();
             }
-
-            //getSprite().draw();
-
-            if (collisionDetector.winPlayer1(this,player2)) {
+            if (collisionDetector.winPlayer1(this, player2)) {
                 sprite.delete();
                 player2.getSprite().delete();
                 game.endingP1();
@@ -114,7 +118,7 @@ public class Player1 extends Player {
 
     @Override
     public void moveUp() {
-        if(canPlay) {
+        if (canPlay) {
             simpleGfxGridPosition.setRow((simpleGfxGridPosition.getRow() - 1));
             if (collisionDetector.canWalkPlayer1(this)) {
                 if (!(lastPosition.equals("back"))) {
@@ -129,16 +133,14 @@ public class Player1 extends Player {
             } else {
                 this.simpleGfxGridPosition.setCol(INITIAL_COL);
                 this.simpleGfxGridPosition.setRow(INITIAL_ROW);
+                boySound.play(true);
                 sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/Fboy1.png");
                 lastPosition = "front";
                 sprite.draw();
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
                 isDead();
             }
-
-            //getSprite().draw();
-
-            if (collisionDetector.winPlayer1(this,player2)) {
+            if (collisionDetector.winPlayer1(this, player2)) {
                 sprite.delete();
                 player2.getSprite().delete();
                 game.endingP1();
@@ -148,7 +150,7 @@ public class Player1 extends Player {
 
     @Override
     public void moveDown() {
-        if(canPlay) {
+        if (canPlay) {
             simpleGfxGridPosition.setRow((simpleGfxGridPosition.getRow() + 1));
             if (collisionDetector.canWalkPlayer1(this)) {
                 if (!(lastPosition.equals("front"))) {
@@ -163,17 +165,14 @@ public class Player1 extends Player {
             } else {
                 this.simpleGfxGridPosition.setCol(INITIAL_COL);
                 this.simpleGfxGridPosition.setRow(INITIAL_ROW);
+                boySound.play(true);
                 sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/Fboy1.png");
                 lastPosition = "front";
                 sprite.draw();
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
                 isDead();
             }
-
-            System.out.println("desenho");
-            //getSprite().draw();
-
-            if (collisionDetector.winPlayer1(this,player2)) {
+            if (collisionDetector.winPlayer1(this, player2)) {
                 sprite.delete();
                 player2.getSprite().delete();
                 game.endingP1();
@@ -189,18 +188,26 @@ public class Player1 extends Player {
         return simpleGfxGridPosition;
     }
 
-    public void setCanPlay(boolean play){
+    public void setCanPlay(boolean play) {
         this.canPlay = play;
     }
 
-    public int isDead(){
-        this.life = life -1;
-         if( life == 0){
-             System.out.println("testP!D");
-             sprite.delete();
-             player2.getSprite().delete();
-             game.endingP2();
-         }
-         return life;
+    public int isDead() {
+        this.life = life - 1;
+        if (life == 2) {
+            heart3boy.delete();
+        } else if (life == 1) {
+            heart2boy.delete();
+        } else if (life == 0) {
+            heart1boy.delete();
+            sprite.delete();
+            player2.getSprite().delete();
+            game.endingP2();
+        }
+        return life;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
     }
 }

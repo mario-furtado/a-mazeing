@@ -16,7 +16,7 @@ public class Game implements KeyboardHandler {
     private Player1 player1;
     private Player2 player2;
     private Maze maze;
-    private InicialMenu menu;
+    private InitialMenu menu;
 
     //PLAYERS MOVEMENT:
     private KeyboardEvent right;
@@ -27,18 +27,20 @@ public class Game implements KeyboardHandler {
     private KeyboardEvent left2;
     private KeyboardEvent up2;
     private KeyboardEvent down2;
-    private boolean runGame = true;
+    private boolean runGame;
 
-    private Picture pictureBoy = new Picture(10,10,"resources/BigBoyWinner.jpg"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    private Picture pictureGirl = new Picture(10,10,"resources/BigWinnerGirl.jpg");  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    private Picture pictureBoy = new Picture(10,10,"resources/BigBoyWinner.jpg");
+    private Picture pictureGirl = new Picture(10,10,"resources/BigWinnerGirl.jpg");
     private Sound victorySound = new Sound("/resources/sound/ChampionsEnd.wav");
 
-    public Game(SimpleGfxGrid simpleGfxGrid, InicialMenu menu){
-        this.simpleGfxGrid = simpleGfxGrid;       /*= new SimpleGfxGrid(60,28)*/;
+    public Game(SimpleGfxGrid simpleGfxGrid, InitialMenu menu){
+        victorySound.stop();
+        this.simpleGfxGrid = simpleGfxGrid;
         this.maze = new Maze();
         this.player1 = new Player1(maze,simpleGfxGrid,this.player2 = new Player2(maze,simpleGfxGrid,player1,this),this);
         this.player2 = new Player2(maze,simpleGfxGrid,this.player1,this);
         this.menu = menu;
+        this.runGame = true;
     }
 
     public void start(){
@@ -55,7 +57,7 @@ public class Game implements KeyboardHandler {
         bootstrapP1();
         bootstrapP2();
     }
-//-----------------PLAYER 2 ---------------------------------------
+    //-----------------PLAYER 2 ---------------------------------------
     private void bootstrapP1(){
         if(runGame) {
 
@@ -117,24 +119,6 @@ public class Game implements KeyboardHandler {
             keyboard2.addEventListener(down);
         }
     }
-
-    //-------menu bootstrap--------//
-
-   /* private void bootstrapMenu(){
-        Keyboard keyboard3 = new Keyboard(this);
-
-        startMenu = new KeyboardEvent();
-        startMenu.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        startMenu.setKey(KeyboardEvent.KEY_SPACE);
-        keyboard3.addEventListener(startMenu);
-
-        quitMenu = new KeyboardEvent();
-        quitMenu.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-        quitMenu.setKey(KeyboardEvent.KEY_E);
-        keyboard3.addEventListener(quitMenu);
-
-    }*/
-
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
@@ -212,9 +196,7 @@ public class Game implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
-
     }
-
 
     public void endingP1(){
         runGame = false;
@@ -222,7 +204,10 @@ public class Game implements KeyboardHandler {
         player2.getSprite().delete();
         pictureBoy.draw();
         menu.getGameSound().close();
+        menu.getInitialSound().close();
         victorySound.play(true);
+        player1.setLife(3);
+        player2.setLife(3);
     }
 
     public void endingP2(){
@@ -231,7 +216,14 @@ public class Game implements KeyboardHandler {
         player1.getSprite().delete();
         pictureGirl.draw();
         menu.getGameSound().close();
+        menu.getInitialSound().close();
         victorySound.play(true);
+        player1.setLife(3);
+        player2.setLife(3);
+    }
+
+    public Sound getVictorySound() {
+        return victorySound;
     }
 }
 
