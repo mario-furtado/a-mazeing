@@ -72,7 +72,6 @@ public class SimpleGfxGridPosition extends AbstractGridPosition {
         return col;
     }
 
-
     public int getRow() {
         return row;
     }

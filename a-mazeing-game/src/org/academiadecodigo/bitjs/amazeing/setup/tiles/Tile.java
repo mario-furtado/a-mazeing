@@ -13,5 +13,5 @@ abstract public class Tile {
          this.col = col;
          this.row = row;
          this.grid = grid;
-     };
+     }
 }

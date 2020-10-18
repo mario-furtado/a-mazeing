@@ -33,6 +33,7 @@ public class Game implements KeyboardHandler {
     private Picture pictureGirl = new Picture(10,10,"resources/BigWinnerGirl.jpg");
     private Sound victorySound = new Sound("/resources/sound/ChampionsEnd.wav");
 
+    //Constructor Method
     public Game(SimpleGfxGrid simpleGfxGrid, InitialMenu menu){
         victorySound.stop();
         this.simpleGfxGrid = simpleGfxGrid;
@@ -52,13 +53,40 @@ public class Game implements KeyboardHandler {
     }
 
     //--------------PLAYERS MOVEMENT--------------
-
     public void initP(){
-        bootstrapP1();
         bootstrapP2();
+        bootstrapP1();
     }
+
+    //-----------------PLAYER 1 ---------------------------------------
+    private  void bootstrapP1(){
+        if(runGame) {
+            Keyboard keyboard2 = new Keyboard(this);
+
+            right = new KeyboardEvent();
+            right.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            right.setKey(KeyboardEvent.KEY_D);
+            keyboard2.addEventListener(right);
+
+            left = new KeyboardEvent();
+            left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            left.setKey(KeyboardEvent.KEY_A);
+            keyboard2.addEventListener(left);
+
+            up = new KeyboardEvent();
+            up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            up.setKey(KeyboardEvent.KEY_W);
+            keyboard2.addEventListener(up);
+
+            down = new KeyboardEvent();
+            down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            down.setKey(KeyboardEvent.KEY_S);
+            keyboard2.addEventListener(down);
+        }
+    }
+
     //-----------------PLAYER 2 ---------------------------------------
-    private void bootstrapP1(){
+    private void bootstrapP2(){
         if(runGame) {
 
             Keyboard keyboard1 = new Keyboard(this);
@@ -91,33 +119,6 @@ public class Game implements KeyboardHandler {
             keyboard1.addEventListener(down2);
         }
 
-    }
-
-    //-----------------PLAYER 1 ---------------------------------------
-    private  void bootstrapP2(){
-        if(runGame) {
-            Keyboard keyboard2 = new Keyboard(this);
-
-            right = new KeyboardEvent();
-            right.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-            right.setKey(KeyboardEvent.KEY_D);
-            keyboard2.addEventListener(right);
-
-            left = new KeyboardEvent();
-            left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-            left.setKey(KeyboardEvent.KEY_A);
-            keyboard2.addEventListener(left);
-
-            up = new KeyboardEvent();
-            up.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-            up.setKey(KeyboardEvent.KEY_W);
-            keyboard2.addEventListener(up);
-
-            down = new KeyboardEvent();
-            down.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-            down.setKey(KeyboardEvent.KEY_S);
-            keyboard2.addEventListener(down);
-        }
     }
 
     @Override
@@ -198,6 +199,7 @@ public class Game implements KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
     }
 
+    //Remove Player 1
     public void endingP1(){
         runGame = false;
         player1.getSprite().delete();
@@ -210,6 +212,7 @@ public class Game implements KeyboardHandler {
         player2.setLife(3);
     }
 
+    //Remove Player 2
     public void endingP2(){
         runGame = false;
         player2.getSprite().delete();

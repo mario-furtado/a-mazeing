@@ -12,21 +12,15 @@ public class InitialMenu implements KeyboardHandler {
     private Sound initialSound = new Sound("/resources/sound/FriendsCut.wav");
     private Sound gameSound = new Sound("/resources/sound/TakeOnMeCut.wav");
     private Picture picture = new Picture(10, 10, "resources/newBigStart.png");
-    //private Picture[] pictures = new Picture[2];
-    private static final int PADDING = 10;
-    private int w = 47 * 30; //num of cols * cell size
-    private int h = 23 * 30; //num of rows * cell size
     private KeyboardEvent startMenu;
     private KeyboardEvent quitMenu;
     private KeyboardEvent restartGame;
     private Game game;
     private boolean canStart;
-    //private boolean startMenu;
     private SimpleGfxGrid grid;
 
+    //Constructor Method
     public InitialMenu(SimpleGfxGrid grid) {
-        //this.pictures[0] = new Picture(10, 10, "resources/newBigStart.png");
-        //this.pictures[1] = new Picture(10, 10, "resources/newLittleStart.png");
         initialSound.stop();
         gameSound.stop();
         this.canStart = true;
@@ -35,10 +29,8 @@ public class InitialMenu implements KeyboardHandler {
         initMenu();
     }
 
+    //Init the first menu
     public void initMenu() {
-       /* while()
-        for(int i = 0; i < pictures.length; i ++)*/
-
         picture.draw();
         bootstrapMenu();
         initialSound.setLoop(4);
@@ -73,7 +65,6 @@ public class InitialMenu implements KeyboardHandler {
             gameSound.setLoop(10);
             canStart = false;
         }
-
         if (keyboardEvent.getKey() == quitMenu.getKey()) {
             System.exit(0);
         }

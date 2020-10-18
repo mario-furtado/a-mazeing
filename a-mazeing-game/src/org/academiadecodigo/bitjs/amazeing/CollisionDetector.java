@@ -46,7 +46,6 @@ public class CollisionDetector {
     }
 
     public boolean canWalkPlayer1(Player1 player) {
-
         SimpleGfxGridPosition position = player.getSimpleGfxGridPosition();
 
         int colP = position.getCol();

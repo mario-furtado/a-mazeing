@@ -10,10 +10,8 @@ public class LeftCorner extends Tile {
 
     public LeftCorner(int row, int col, SimpleGfxGrid grid) {
         super(row, col, grid);
-
         position = new SimpleGfxGridPosition(col, row, grid);
         picture = new Picture(position.getX(), position.getY(), "resources/leftCorner.png");
-
     }
 
     public void init() {

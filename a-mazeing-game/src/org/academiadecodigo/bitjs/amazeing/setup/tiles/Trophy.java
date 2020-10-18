@@ -11,11 +11,9 @@ public class Trophy extends Tile {
 
     public Trophy(int row, int col, SimpleGfxGrid grid){
         super(row, col, grid);
-
         position = new SimpleGfxGridPosition(col,row,grid);
         picture = new Picture(position.getX(), position.getY(),"resources/trophy30.png");
-
-    };
+    }
 
     public void init(){
         picture.draw();

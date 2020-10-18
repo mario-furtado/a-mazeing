@@ -1,5 +1,4 @@
 package org.academiadecodigo.bitjs.amazeing.setup;
-
 import org.academiadecodigo.bitjs.amazeing.CollisionDetector;
 import org.academiadecodigo.bitjs.amazeing.Game;
 import org.academiadecodigo.bitjs.amazeing.Sound;
@@ -26,7 +25,6 @@ public class Player2 extends Player {
     private Picture heart2girl = new Picture(1398,270,"resources/newHeart.png");
     private Picture heart3girl = new Picture(1398,240,"resources/newHeart.png");
     private int life;
-
 
     public Player2(Maze maze, SimpleGfxGrid grid, Player1 player1, Game game) {
         super(maze, grid);

@@ -31,7 +31,6 @@ public class Maze {
      */
     private int[][] scheme =
             {
-                    //0| 1| 2 |3| 4| 5| 6| 7 |8 |9|10|11|12|13|14|15|16|17|18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35|36|37|38|39|40
                     {10, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 11},
                     {6, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7},
                     {6, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7},
@@ -59,8 +58,8 @@ public class Maze {
 
 
     public void paintMaze(SimpleGfxGrid grid) {
-        for (int row = 0; row < scheme.length; row++) {        // maze.length retorna o numero de rows (8)
-            for (int col = 0; col < scheme[0].length; col++) {  // maze[0].length retorna o numero de cols (11)
+        for (int row = 0; row < scheme.length; row++) {        // maze.length returns the number of rows (8)
+            for (int col = 0; col < scheme[0].length; col++) {  // maze[0].length returns the number of cols (11)
 
                 switch (scheme[row][col]) {
                     case 0:

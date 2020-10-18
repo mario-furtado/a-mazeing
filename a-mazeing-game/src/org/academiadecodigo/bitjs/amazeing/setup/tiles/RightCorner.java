@@ -10,10 +10,8 @@ public class RightCorner extends Tile {
 
     public RightCorner(int row, int col, SimpleGfxGrid grid) {
         super(row, col, grid);
-
         position = new SimpleGfxGridPosition(col, row, grid);
         picture = new Picture(position.getX(), position.getY(), "resources/rightCorner.png");
-
     }
 
     public void init() {

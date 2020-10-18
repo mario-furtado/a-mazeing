@@ -10,7 +10,7 @@ public class SimpleGfxGrid implements Grid {
     public static final int PADDING = 10;
     private int cols;
     private int rows;
-    private static final int CELL_SIZE = 30; // 40
+    private static final int CELL_SIZE = 30;
     private Rectangle rectangle;
 
     public SimpleGfxGrid(int cols, int rows){
@@ -25,6 +25,11 @@ public class SimpleGfxGrid implements Grid {
     }
 
     @Override
+    public GridPosition makeGridPosition(int col, int row, GridColor gridColor){
+        return new SimpleGfxGridPosition(col, row, this, gridColor);
+    }
+
+    @Override
     public int getCols(){
         return this.cols;
     }
@@ -32,14 +37,6 @@ public class SimpleGfxGrid implements Grid {
     @Override
     public int getRows(){
         return this.rows;
-    }
-
-    public int getWidth(){
-        return rectangle.getWidth();
-    }
-
-    public int getHeight(){
-        return rectangle.getHeight();
     }
 
     public int getX(){
@@ -52,11 +49,6 @@ public class SimpleGfxGrid implements Grid {
 
     public static int getCellSize() {
         return CELL_SIZE;
-    }
-
-    @Override
-    public GridPosition makeGridPosition(int col, int row, GridColor gridColor){
-        return new SimpleGfxGridPosition(col, row, this, gridColor);
     }
 
     public int rowToY(int row){

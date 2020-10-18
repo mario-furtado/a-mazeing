@@ -6,14 +6,10 @@ import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGridPosition;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public abstract class Player {
-   /*private Picture sprite;
-   private SimpleGfxGridPosition simpleGfxGridPosition;*/
    private Maze maze;
    private SimpleGfxGrid grid;
 
-   public Player (/*SimpleGfxGridPosition simpleGfxGridPosition,*/ Maze maze/*, Picture sprite*/, SimpleGfxGrid grid){
-      /* this.sprite = sprite;
-       this.simpleGfxGridPosition = simpleGfxGridPosition;*/
+   public Player ( Maze maze, SimpleGfxGrid grid){
        this.maze = maze;
        this.grid = grid;
    }
@@ -25,10 +21,6 @@ public abstract class Player {
    public abstract void moveUp();
 
    public abstract void moveDown();
-
-   /*public Picture getSprite(){
-       return sprite;
-   }*/
 
     public Maze getMaze() {
         return maze;

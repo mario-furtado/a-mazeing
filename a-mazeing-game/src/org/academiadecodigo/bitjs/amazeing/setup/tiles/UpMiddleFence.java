@@ -11,10 +11,8 @@ public class UpMiddleFence extends Tile {
 
     public UpMiddleFence(int row, int col, SimpleGfxGrid grid) {
         super(row, col, grid);
-
         position = new SimpleGfxGridPosition(col, row, grid);
         picture = new Picture(position.getX(), position.getY(), "resources/middleFence.png");
-
     }
 
     public void init() {
