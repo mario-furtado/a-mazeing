@@ -232,16 +232,18 @@ public class Game implements KeyboardHandler {
 
 
     public void endingP1(){
+        runGame = false;
         player1.getSprite().delete();
         player2.getSprite().delete();
-        runGame = false;
+
         pictureBoy.draw();
     }
 
     public void endingP2(){
+        runGame = false;
         player2.getSprite().delete();
         player1.getSprite().delete();
-        runGame = false;
+
         pictureGirl.draw();
     }
 }

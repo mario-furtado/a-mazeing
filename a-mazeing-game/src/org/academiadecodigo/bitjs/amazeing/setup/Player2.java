@@ -21,6 +21,8 @@ public class Player2 extends Player {
     private Player1 player1;
     private Game game;
 
+    private int life = 3;
+
 
     public Player2(Maze maze, SimpleGfxGrid grid, Player1 player1, Game game) {
         super(maze, grid);
@@ -52,7 +54,7 @@ public class Player2 extends Player {
                     sprite.translate(CELL_SIZE, 0);  // x e y
                     System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
                 }
-
+                getSprite().draw();
             } else {
 
                 this.simpleGfxGridPosition.setCol(INITIAL_COL);
@@ -61,9 +63,10 @@ public class Player2 extends Player {
                 lastPosition = "front";
                 sprite.draw();
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+                isDead();
             }
-
-            getSprite().draw();
+            System.out.println("sou gay");
+            //getSprite().draw();
 
             if (collisionDetector.winPlayer2(this,player1)) {
                 sprite.delete();
@@ -88,7 +91,7 @@ public class Player2 extends Player {
                     sprite.translate(-CELL_SIZE, 0);  // x e y
                     System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
                 }
-
+                getSprite().draw();
             } else {
                 this.simpleGfxGridPosition.setCol(INITIAL_COL);
                 this.simpleGfxGridPosition.setRow(INITIAL_ROW);
@@ -96,8 +99,10 @@ public class Player2 extends Player {
                 lastPosition = "front";
                 sprite.draw();
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+                isDead();
             }
-            getSprite().draw();
+            System.out.println("sou gay");
+            //getSprite().draw();
 
             if (collisionDetector.winPlayer2(this,player1)) {
                 sprite.delete();
@@ -119,7 +124,7 @@ public class Player2 extends Player {
                 } else {
                     sprite.translate(0, -CELL_SIZE);
                 }
-
+                getSprite().draw();
             } else {
                 this.simpleGfxGridPosition.setCol(INITIAL_COL);
                 this.simpleGfxGridPosition.setRow(INITIAL_ROW);
@@ -127,8 +132,10 @@ public class Player2 extends Player {
                 lastPosition = "front";
                 sprite.draw();
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+                isDead();
             }
-            getSprite().draw();
+            System.out.println("sou gay");
+            //getSprite().draw();
 
             if (collisionDetector.winPlayer2(this,player1)) {
                 sprite.delete();
@@ -150,7 +157,7 @@ public class Player2 extends Player {
                 } else {
                     sprite.translate(0, CELL_SIZE);
                 }
-
+                getSprite().draw();
             } else {
                 this.simpleGfxGridPosition.setCol(INITIAL_COL);
                 this.simpleGfxGridPosition.setRow(INITIAL_ROW);
@@ -158,8 +165,12 @@ public class Player2 extends Player {
                 lastPosition = "front";
                 sprite.draw();
                 System.out.println("col " + simpleGfxGridPosition.getCol() + " " + "row " + simpleGfxGridPosition.getRow());
+
+                isDead();
             }
-            getSprite().draw();
+
+            System.out.println("sou gay");
+            //getSprite().draw();
 
             if (collisionDetector.winPlayer2(this,player1)) {
                 sprite.delete();
@@ -179,5 +190,16 @@ public class Player2 extends Player {
 
     public void setCanPlay(boolean play){
         this.canPlay = play;
+    }
+
+    public int isDead(){
+        this.life = life -1;
+        if( life == 0){
+            System.out.println("testP2DEAD");
+            sprite.delete();
+            player1.getSprite().delete();
+            game.endingP1();
+        }
+        return life;
     }
 }
