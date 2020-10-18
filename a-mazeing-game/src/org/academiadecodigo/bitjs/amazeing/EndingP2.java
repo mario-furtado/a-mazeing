@@ -1,3 +1,4 @@
+/*
 package org.academiadecodigo.bitjs.amazeing;
 
 import org.academiadecodigo.bitjs.amazeing.setup.Player2;
@@ -14,3 +15,4 @@ public class EndingP2 {
         picture.draw();
     }
 }
+*/

@@ -8,6 +8,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 import java.awt.*;
 
+/*
 public class EndingP1 {
 
     //private Rectangle rect = new Rectangle(10,10,1410,690);
@@ -23,12 +24,15 @@ public class EndingP1 {
         picture.draw();
     }
 
-    /*public void deletePlayer1 (Player1 player1){
+    */
+/*public void deletePlayer1 (Player1 player1){
         SimpleGfxGridPosition position = player1.getSimpleGfxGridPosition();
 
         if(position.getCol() == 23 && position.getRow() == 11){
             player1.getSprite().delete();
             player1.setCanPlay(false);
         }
-    }*/
+    }*//*
+
 }
+*/

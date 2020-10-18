@@ -17,7 +17,7 @@ public class CollisionDetector {
         this.maze = maze;
     }
 
-    public boolean winPlayer1(Player1 player1){
+    public boolean winPlayer1(Player1 player1, Player2 player2){
         SimpleGfxGridPosition position = player1.getSimpleGfxGridPosition();
 
         int colP = position.getCol();
@@ -27,13 +27,14 @@ public class CollisionDetector {
             return false;
         }
         //player1.deletePlayer1();          // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-        player1.getSprite().delete();
+        //player1.getSprite().delete();
         player1.setCanPlay(false);
-        player1.getSprite().delete();
+        player2.setCanPlay(false);
+        //player1.getSprite().delete();
         return true;
     }
 
-    public boolean winPlayer2(Player2 player2){
+    public boolean winPlayer2(Player2 player2,Player1 player1){
         SimpleGfxGridPosition position = player2.getSimpleGfxGridPosition();
 
         int colP = position.getCol();
@@ -42,6 +43,8 @@ public class CollisionDetector {
         if(maze.getScheme()[rowP][colP] != 9){
             return false;
         }
+        player1.setCanPlay(false);
+        player2.setCanPlay(false);
         return true;
     }
 

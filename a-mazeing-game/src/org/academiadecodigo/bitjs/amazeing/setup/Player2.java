@@ -1,7 +1,7 @@
 package org.academiadecodigo.bitjs.amazeing.setup;
 
 import org.academiadecodigo.bitjs.amazeing.CollisionDetector;
-import org.academiadecodigo.bitjs.amazeing.EndingP2;
+import org.academiadecodigo.bitjs.amazeing.Game;
 import org.academiadecodigo.bitjs.amazeing.grid.Maze;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGrid;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGridPosition;
@@ -17,16 +17,19 @@ public class Player2 extends Player {
     private static final int INITIAL_COL = 45; // 44
     private static final int INITIAL_ROW = 11; //10
     private String lastPosition = "front";
-    private EndingP2 endingP2 = new EndingP2();
     private boolean canPlay = true;
+    private Player1 player1;
+    private Game game;
 
 
-    public Player2(Maze maze, SimpleGfxGrid grid) {
+    public Player2(Maze maze, SimpleGfxGrid grid, Player1 player1, Game game) {
         super(maze, grid);
         this.initialPosition = new SimpleGfxGridPosition(INITIAL_COL, INITIAL_ROW, grid);
         this.simpleGfxGridPosition = new SimpleGfxGridPosition(INITIAL_COL, INITIAL_ROW, grid);
         sprite = new Picture(getGrid().columnToX(simpleGfxGridPosition.getCol()), getGrid().rowToY((simpleGfxGridPosition.getRow())), "resources/Fgirl1.png");
         this.collisionDetector = new CollisionDetector(getMaze());
+        this.player1 = player1;
+        this.game = game;
     }
 
     public void init() {
@@ -62,9 +65,10 @@ public class Player2 extends Player {
 
             getSprite().draw();
 
-            if (collisionDetector.winPlayer2(this)) {
-                endingP2.init(this);
+            if (collisionDetector.winPlayer2(this,player1)) {
                 sprite.delete();
+                player1.getSprite().delete();
+                game.endingP2();
             }
         }
     }
@@ -95,9 +99,10 @@ public class Player2 extends Player {
             }
             getSprite().draw();
 
-            if (collisionDetector.winPlayer2(this)) {
-                endingP2.init(this);
+            if (collisionDetector.winPlayer2(this,player1)) {
                 sprite.delete();
+                player1.getSprite().delete();
+                game.endingP2();
             }
         }
     }
@@ -118,7 +123,6 @@ public class Player2 extends Player {
             } else {
                 this.simpleGfxGridPosition.setCol(INITIAL_COL);
                 this.simpleGfxGridPosition.setRow(INITIAL_ROW);
-                //sprite.delete();
                 sprite = new Picture(getGrid().columnToX(initialPosition.getCol()), getGrid().rowToY((initialPosition.getRow())), "resources/Fgirl1.png");
                 lastPosition = "front";
                 sprite.draw();
@@ -126,9 +130,10 @@ public class Player2 extends Player {
             }
             getSprite().draw();
 
-            if (collisionDetector.winPlayer2(this)) {
-                endingP2.init(this);
+            if (collisionDetector.winPlayer2(this,player1)) {
                 sprite.delete();
+                player1.getSprite().delete();
+                game.endingP2();
             }
         }
     }
@@ -156,9 +161,10 @@ public class Player2 extends Player {
             }
             getSprite().draw();
 
-            if (collisionDetector.winPlayer2(this)) {
+            if (collisionDetector.winPlayer2(this,player1)) {
                 sprite.delete();
-                endingP2.init(this);
+                player1.getSprite().delete();
+                game.endingP2();
             }
         }
     }
