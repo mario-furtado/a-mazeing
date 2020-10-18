@@ -31,29 +31,14 @@ public class Game implements KeyboardHandler {
 
     private Picture pictureBoy = new Picture(10,10,"resources/BigBoyWinner.jpg"); // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     private Picture pictureGirl = new Picture(10,10,"resources/BigWinnerGirl.jpg");  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    private Sound victorySound = new Sound("/resources/sound/ChampionsEnd.wav");
 
-    /*MENU:
-    private KeyboardEvent startMenu;
-    private KeyboardEvent quitMenu;
-
-    //RENDER:
-    private Render render = Render.MENU;
-
-
-    public void renderType(){
-       if(render == Render.MENU){
-            menu.initMenu();
-        }
-       if(render == Render.GAME){
-           this.start();
-       }*/
-
-
-    public Game(SimpleGfxGrid simpleGfxGrid/*FieldElements fieldElements, Maze maze*/){
+    public Game(SimpleGfxGrid simpleGfxGrid, InicialMenu menu){
         this.simpleGfxGrid = simpleGfxGrid;       /*= new SimpleGfxGrid(60,28)*/;
         this.maze = new Maze();
         this.player1 = new Player1(maze,simpleGfxGrid,this.player2 = new Player2(maze,simpleGfxGrid,player1,this),this);
         this.player2 = new Player2(maze,simpleGfxGrid,this.player1,this);
+        this.menu = menu;
     }
 
     public void start(){
@@ -235,16 +220,18 @@ public class Game implements KeyboardHandler {
         runGame = false;
         player1.getSprite().delete();
         player2.getSprite().delete();
-
         pictureBoy.draw();
+        menu.getGameSound().close();
+        victorySound.play(true);
     }
 
     public void endingP2(){
         runGame = false;
         player2.getSprite().delete();
         player1.getSprite().delete();
-
         pictureGirl.draw();
+        menu.getGameSound().close();
+        victorySound.play(true);
     }
 }
 

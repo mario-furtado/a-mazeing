@@ -11,11 +11,9 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class InicialMenu implements KeyboardHandler {
 
     private Rectangle menu;// mudar por imagem
-    private Sound initialSound = new Sound("/resources/sound/GameMusic.wav");
+    private Sound initialSound = new Sound("/resources/sound/Victory.wav");
     private Sound gameSound = new Sound("/resources/sound/Victory.wav");
-
     private Picture picture = new Picture(10,10,"resources/GRANDEEE.jpg");
-
     private static final int PADDING = 10;
     private int w = 47 * 30; //num de colunas * tamanho da cell
     private int h = 23 * 30; //num de linhas * tamanho da cell
@@ -25,7 +23,7 @@ public class InicialMenu implements KeyboardHandler {
     private boolean canStart = true;
 
     public InicialMenu(SimpleGfxGrid grid){
-       this.game = new Game(grid);
+       this.game = new Game(grid, this);
        initMenu();
    }
 
@@ -57,7 +55,7 @@ public class InicialMenu implements KeyboardHandler {
            picture.delete();
            initialSound.stop();
            game.start();
-           gameSound.play(true);
+           gameSound.setLoop(10);
            canStart = false;
            System.out.println("space");
        }
@@ -70,4 +68,8 @@ public class InicialMenu implements KeyboardHandler {
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent){}
+
+    public Sound getGameSound() {
+        return gameSound;
+    }
 }
