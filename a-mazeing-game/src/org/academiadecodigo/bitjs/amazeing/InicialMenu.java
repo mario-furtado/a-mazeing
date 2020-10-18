@@ -1,9 +1,6 @@
 package org.academiadecodigo.bitjs.amazeing;
 
-import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxColorMapper;
 import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGrid;
-import org.academiadecodigo.bitjs.amazeing.simplegfx.SimpleGfxGridPosition;
-import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -14,6 +11,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class InicialMenu implements KeyboardHandler {
 
     private Rectangle menu;// mudar por imagem
+    private Sound sound = new Sound("resources/sound/GameMusic.wav");
 
     private Picture picture = new Picture(10,10,"resources/GRANDEEE.jpg");
 
@@ -35,7 +33,9 @@ public class InicialMenu implements KeyboardHandler {
       // menu.setColor(Color.DARK_GRAY);
        //menu.fill();
        picture.draw();
+       //sound.play(true);
        bootstrapMenu();
+       sound.play(true);
    }
 
    //---------keyboard--------//
@@ -66,7 +66,6 @@ public class InicialMenu implements KeyboardHandler {
        if(keyboardEvent.getKey() == quitMenu.getKey()){
            System.exit(0);
            System.out.println("quit");
-
        }
    }
 

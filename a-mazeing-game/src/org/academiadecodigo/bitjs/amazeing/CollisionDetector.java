@@ -59,7 +59,7 @@ public class CollisionDetector {
         //for (int row = 0; row < maze.getScheme().length; row++) {        // maze.length retorna o numero de rows (8)
         //for (int col = 0; col < maze.getScheme()[0].length; col++) {
         //System.out.println(maze.getScheme()[row][col]);
-        if (maze.getScheme()[rowP][colP] == 0 || maze.getScheme()[rowP][colP] == 2 || maze.getScheme()[rowP][colP] == 6 || maze.getScheme()[rowP][colP] == 7) {//maze.getScheme()[row][col] == 0 && colP == col && rowP == row) {
+        if (maze.getScheme()[rowP][colP] == 0 || maze.getScheme()[rowP][colP] == 2 || maze.getScheme()[rowP][colP] == 6 || maze.getScheme()[rowP][colP] == 7 || maze.getScheme()[rowP][colP] == 12) {//maze.getScheme()[row][col] == 0 && colP == col && rowP == row) {
             //System.out.println(colP +" " +col);
             //System.out.println(rowP +" " + row);
             //if(colP == col && rowP == row){
@@ -83,7 +83,7 @@ public class CollisionDetector {
         //for (int row = 0; row < maze.getScheme().length; row++) {        // maze.length retorna o numero de rows (8)
         //for (int col = 0; col < maze.getScheme()[0].length; col++) {
         //System.out.println(maze.getScheme()[row][col]);
-        if (maze.getScheme()[rowP][colP] == 0 || maze.getScheme()[rowP][colP] == 2 || maze.getScheme()[rowP][colP] == 6 || maze.getScheme()[rowP][colP] == 7) {//maze.getScheme()[row][col] == 0 && colP == col && rowP == row) {
+        if (maze.getScheme()[rowP][colP] == 0 || maze.getScheme()[rowP][colP] == 2 || maze.getScheme()[rowP][colP] == 6 || maze.getScheme()[rowP][colP] == 7 || maze.getScheme()[rowP][colP] == 12) {//maze.getScheme()[row][col] == 0 && colP == col && rowP == row) {
             //System.out.println(colP +" " +col);
             //System.out.println(rowP +" " + row);
             //if(colP == col && rowP == row){

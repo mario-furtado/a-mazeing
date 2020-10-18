@@ -12,6 +12,9 @@ public class Main {
         game.start();
        */
        InicialMenu menu = new InicialMenu(simpleGfxGrid);
+       /*Sound sound = new Sound("/Desktop/game2.0/a-amazeing/a-mazeing-game/resources/sound/GameMusic.wav");
+       sound.play(true);*/
+
 
 
     }

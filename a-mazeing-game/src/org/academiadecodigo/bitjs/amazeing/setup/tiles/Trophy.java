@@ -13,7 +13,7 @@ public class Trophy extends Tile {
         super(row, col, grid);
 
         position = new SimpleGfxGridPosition(col,row,grid);
-        picture = new Picture(position.getX(), position.getY(),"resources/finaltrophy2.png");
+        picture = new Picture(position.getX(), position.getY(),"resources/trophy30.png");
 
     };
 
